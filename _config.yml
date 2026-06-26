@@ -1,0 +1,8 @@
+title: Portfolio Haus
+description: Strategic communications for work that cannot afford to be misunderstood.
+# TODO before launch: set this once the domain is live, e.g. url: "https://portfoliohaus.co"
+# Without it, og:image resolves to a relative path instead of a full URL, which some
+# platforms (Facebook, LinkedIn, Slack) need for link previews to render reliably.
+url: ""
+markdown: kramdown
+plugins: []

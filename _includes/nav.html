@@ -1,0 +1,33 @@
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="{{ '/' | relative_url }}#top">
+      <svg class="monogram" viewBox="0 0 64 64" role="img" aria-label="Portfolio Haus monogram">
+        <circle class="monogram-ring" cx="32" cy="32" r="29"/>
+        <text class="monogram-text" x="32" y="40" text-anchor="middle">PH</text>
+      </svg>
+      <span class="brand-name">Portfolio Haus</span>
+    </a>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
+    <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle menu">
+      <svg viewBox="0 0 24 24" width="22" height="22"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </label>
+
+    <ul class="nav-links">
+      <li><a href="{{ '/' | relative_url }}#top">Home</a></li>
+      <li><a href="{{ '/ways-to-work/' | relative_url }}">Ways to Work</a></li>
+      <li><a href="{{ '/method/' | relative_url }}">Method</a></li>
+      <li><a href="{{ '/receipts/' | relative_url }}">Receipts</a></li>
+      <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+      <li><a href="{{ '/contact/' | relative_url }}">Contact</a></li>
+      <li class="nav-cta-item"><a class="btn btn-gold" href="{{ '/contact/' | relative_url }}">Start a Conversation</a></li>
+    </ul>
+  </div>
+</nav>
+<script>
+  document.querySelectorAll('.nav-links a').forEach(function(link){
+    link.addEventListener('click', function(){
+      document.getElementById('nav-toggle').checked = false;
+    });
+  });
+</script>
