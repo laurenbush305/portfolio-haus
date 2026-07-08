@@ -1,0 +1,442 @@
+---
+layout: default
+title: Opportunity Readiness Brief | Portfolio Haus
+description: A private Portfolio Haus instrument for organizing a live opportunity before the work begins.
+extra_css:
+  - /assets/css/tools.css
+noindex: true
+---
+
+<div id="top"></div>
+
+<section class="tool-hero">
+  <div class="container">
+    <span class="private-badge">Private Instrument &middot; Shared by Portfolio Haus</span>
+    <p class="eyebrow">Portfolio Haus Tools</p>
+    <h1>Opportunity Readiness Brief</h1>
+    <div class="haus-lines"><span></span><span></span></div>
+    <p class="tool-sub">For the moment when someone says: we have a proposal due and the story is everywhere.</p>
+    <p class="tool-promise">Ten minutes of honest answers now saves the first hour of every meeting later. Nothing you enter leaves this page until you send it.</p>
+    <p class="hero-use">Private prospect tool &middot; <b>Used before deadline-driven work</b> &middot; Not a substitute for strategy</p>
+  </div>
+</section>
+
+<section class="tool-body">
+  <div class="container">
+    <div class="tool-frame">
+
+      <div class="tool-panel" id="orb-form">
+        <div class="tool-progress">
+          <span class="count" id="orb-count">Step 1 of 4</span>
+          <div class="progress-cells" id="orb-cells" aria-hidden="true"><span class="now"></span><span></span><span></span><span></span></div>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="form-step active" data-step="1">
+          <p class="form-step-title">The Opportunity</p>
+          <p class="form-step-note">Name the moment. Deadlines behave better once they are written down.</p>
+
+          <div class="field" data-required>
+            <label for="f-name">Opportunity name</label>
+            <input type="text" id="f-name" placeholder="e.g., State Financial Literacy RFP, Q3 funder meeting, board vote on the expansion">
+            <span class="field-error">Give the opportunity a name. Even a working one.</span>
+          </div>
+          <div class="field">
+            <label for="f-type">Opportunity type</label>
+            <select id="f-type">
+              <option>Proposal or RFP</option>
+              <option>Grant or funding application</option>
+              <option>Funder meeting</option>
+              <option>Partnership pitch</option>
+              <option>Board conversation</option>
+              <option>Conference or public moment</option>
+              <option>Other deadline-driven opportunity</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-deadline">Deadline or decision date <span class="hint">Leave blank if there is not one yet. That is information too.</span></label>
+            <input type="date" id="f-deadline">
+          </div>
+          <div class="field" data-required>
+            <label for="f-objective">What are you trying to win, secure, explain, or move forward?</label>
+            <textarea id="f-objective" placeholder="The award, the renewal, the yes, the vote, the partnership. Name it plainly."></textarea>
+            <span class="field-error">This is the whole point of the brief. One or two sentences will do.</span>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="form-step" data-step="2">
+          <p class="form-step-title">The Audience</p>
+          <p class="form-step-note">Messages are approved by people, not by organizations.</p>
+
+          <div class="field" data-required>
+            <label for="f-audience">Who needs to understand or approve this?</label>
+            <textarea id="f-audience" placeholder="Names and roles if you have them. A review committee, a program officer, a board, a partner exec."></textarea>
+            <span class="field-error">Name the decision audience, even roughly.</span>
+          </div>
+          <div class="field">
+            <label for="f-stakeholders">Who else is involved on your side? <span class="hint">Staff, leadership, partners, consultants. Anyone with a hand on the materials or an opinion about them.</span></label>
+            <textarea id="f-stakeholders" placeholder="The more hands on the message, the more this matters."></textarea>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="form-step" data-step="3">
+          <p class="form-step-title">The Message and the Proof</p>
+          <p class="form-step-note">Claims travel. Receipts make people believe them when they arrive.</p>
+
+          <div class="field">
+            <label for="f-msgstate">Current state of the message</label>
+            <select id="f-msgstate">
+              <option value="named">Named and repeatable. People say it the same way twice.</option>
+              <option value="drafted">Drafted, but wobbly. It changes a little every telling.</option>
+              <option value="scattered" selected>It lives across decks, documents, and a few heads.</option>
+              <option value="scratch">It is being written from scratch for this opportunity.</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-proof">Available proof <span class="hint">Outcomes, data, testimonials, case studies, press, anything you could show a skeptic today.</span></label>
+            <textarea id="f-proof"></textarea>
+          </div>
+          <div class="field">
+            <label for="f-gaps">Missing proof <span class="hint">What you wish you could show a skeptic today.</span></label>
+            <textarea id="f-gaps"></textarea>
+          </div>
+          <div class="field">
+            <label for="f-materials">Required materials <span class="hint">What this opportunity actually demands: narrative, budget, deck, one-pager, bios, letters of support.</span></label>
+            <textarea id="f-materials"></textarea>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="form-step" data-step="4">
+          <p class="form-step-title">Risks and Success</p>
+          <p class="form-step-note">Last step. Say the quiet part here so it does not surprise anyone later.</p>
+
+          <div class="field">
+            <label for="f-risks">Risks or sensitivities <span class="hint">Political dynamics, past history with this funder, internal disagreement, anything that needs careful handling.</span></label>
+            <textarea id="f-risks"></textarea>
+          </div>
+          <div class="field" data-required>
+            <label for="f-success">What would success look like?</label>
+            <textarea id="f-success" placeholder="Beyond winning. What changes for the organization if this lands?"></textarea>
+            <span class="field-error">Describe the win, even briefly. It shapes the whole narrative.</span>
+          </div>
+          <div class="field">
+            <label for="f-messiest">What feels messiest right now?</label>
+            <select id="f-messiest">
+              <option value="story">The story. We are not sure what we are actually claiming.</option>
+              <option value="proof">The proof. The claims are fine but the receipts are scattered.</option>
+              <option value="materials">The materials. We know the story but nothing is built.</option>
+              <option value="stakeholders">The stakeholders. Too many cooks, not enough recipe.</option>
+              <option value="timeline">The timeline. Everything, at once, by Friday.</option>
+              <option value="all">Honestly, all of it.</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-nav">
+          <button class="quiz-back" id="orb-back" type="button" style="margin-top:0;" hidden>&larr; Previous step</button>
+          <button class="btn btn-gold" id="orb-next" type="button">Next Step</button>
+        </div>
+      </div>
+
+      <!-- Output -->
+      <div class="brief-output" id="orb-output" aria-live="polite">
+        <div class="brief-doc rv revealed" id="orb-doc">
+          <p class="brief-marque">Opportunity Readiness Brief &middot; Prepared with a Portfolio Haus instrument</p>
+          <h3 id="b-name"></h3>
+          <p class="brief-date" id="b-meta"></p>
+          <p class="signal-label" style="margin:18px 0 10px;">Haus Signal</p>
+          <div id="b-flags"></div>
+
+          <div class="brief-section"><h4>Opportunity Summary</h4><p id="b-summary"></p></div>
+          <div class="brief-section"><h4>Decision Audience</h4><p id="b-audience"></p></div>
+          <div class="brief-section"><h4>Narrative Objective</h4><p id="b-objective"></p></div>
+          <div class="brief-section"><h4>Evidence Available</h4><p id="b-proof"></p></div>
+          <div class="brief-section"><h4>Evidence Gaps</h4><p id="b-gaps"></p></div>
+          <div class="brief-section"><h4>Materials Needed</h4><p id="b-materials"></p></div>
+          <div class="brief-section"><h4>Timeline Risk</h4><p id="b-timeline"></p></div>
+          <div class="brief-section"><h4>Messaging Risk</h4><p id="b-msgrisk"></p></div>
+          <div class="brief-section"><h4>Stakeholder Risk</h4><p id="b-stakerisk"></p></div>
+          <div class="brief-section"><h4>What Portfolio Haus Would Stabilize First</h4><p id="b-stabilize"></p></div>
+          <div class="brief-section"><h4>Suggested Next Step</h4><p id="b-next"></p></div>
+        </div>
+
+        <div class="tool-actions">
+          <a class="btn-tool primary" id="b-email" href="#">Send Brief to Portfolio Haus</a>
+          <button class="btn-tool" id="b-copy" type="button">Copy Brief</button>
+          <button class="btn-tool" id="b-download" type="button">Download as .txt</button>
+        </div>
+        <p class="action-confirm" id="b-confirm"></p>
+        <div class="tool-restart">
+          <button type="button" id="orb-edit">&larr; Edit my answers</button>
+        </div>
+      </div>
+
+      <p class="tool-footnote">The brief organizes the opportunity. The engagement writes the narrative. It goes faster when this page arrives first.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  "use strict";
+
+  var MAILTO = "biz.portfoliohaus@gmail.com";
+  var step = 1;
+  var TOTAL = 4;
+  var lastBriefText = "";
+
+  var elForm = document.getElementById("orb-form");
+  var elOut = document.getElementById("orb-output");
+  var elCount = document.getElementById("orb-count");
+  var elCells = document.getElementById("orb-cells");
+  var elNext = document.getElementById("orb-next");
+  var elBack = document.getElementById("orb-back");
+
+  function v(id) { return document.getElementById(id).value.trim(); }
+  function orNote(text, note) { return text ? text : note; }
+
+  function showStep(n) {
+    step = n;
+    document.querySelectorAll(".form-step").forEach(function (s) {
+      s.classList.toggle("active", Number(s.dataset.step) === n);
+    });
+    elCount.textContent = "Step " + n + " of " + TOTAL;
+    elCells.querySelectorAll("span").forEach(function (cell, i) {
+      cell.className = i < n - 1 ? "done" : (i === n - 1 ? "now" : "");
+    });
+    elBack.hidden = n === 1;
+    elNext.textContent = n === TOTAL ? "Build the Brief" : "Next Step";
+    elForm.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function validateStep(n) {
+    var ok = true;
+    var stepEl = document.querySelector('.form-step[data-step="' + n + '"]');
+    stepEl.querySelectorAll(".field[data-required]").forEach(function (f) {
+      var input = f.querySelector("input, textarea, select");
+      var bad = !input.value.trim();
+      f.classList.toggle("has-error", bad);
+      if (bad) ok = false;
+    });
+    return ok;
+  }
+
+  function daysUntil(dateStr) {
+    if (!dateStr) return null;
+    var d = new Date(dateStr + "T12:00:00");
+    if (isNaN(d.getTime())) return null;
+    return Math.ceil((d - new Date()) / 86400000);
+  }
+
+  function timelineRisk(days) {
+    if (days === null) return { level: "low", label: "Unscheduled", text: "No deadline or decision date is on the calendar yet. That is breathing room, and breathing room is where good narratives get built. It is also how opportunities quietly expire. Set the date." };
+    if (days < 0) return { level: "high", label: "Past Due", text: "The listed date has passed. If the opportunity is still live, this brief is now a triage document. Prioritize ruthlessly." };
+    if (days <= 14) return { level: "high", label: "Critical: " + days + " day" + (days === 1 ? "" : "s"), text: "The deadline is close enough to make strategic decisions for you. Every remaining hour should go to the claim, the proof, and the required materials, in that order. Nothing exploratory." };
+    if (days <= 30) return { level: "mid", label: "Elevated: " + days + " days", text: "There is time to build this properly, but not time to circle. Decisions about the core narrative should be made this week so production has room to breathe." };
+    if (days <= 60) return { level: "mid", label: "Moderate: " + days + " days", text: "A comfortable window if it is used deliberately. Lock the narrative core early. The last two weeks should be production and review, not discovery." };
+    return { level: "low", label: "Planned: " + days + " days", text: "A genuine runway. This is the rare opportunity that can be built ahead of pressure instead of under it." };
+  }
+
+  function messagingRisk(state) {
+    switch (state) {
+      case "named": return { level: "low", label: "Low", text: "The core message is named and repeatable. The work here is tailoring it to this decision audience, not inventing it." };
+      case "drafted": return { level: "mid", label: "Moderate", text: "A draft exists but drifts between tellings. Under deadline pressure, drift becomes contradiction. The message needs to be locked before materials multiply." };
+      case "scattered": return { level: "mid", label: "Elevated", text: "The message currently lives across decks, documents, and a few heads. Assembling it for this opportunity means synthesis first, writing second. Budget time for both." };
+      case "scratch": return { level: "high", label: "High", text: "The message is being written from scratch against a live opportunity. This is workable, but the narrative core must come before any production, or every document becomes a rewrite." };
+    }
+  }
+
+  function stakeholderRisk(stakeholders, risks) {
+    var many = stakeholders && (stakeholders.split(/[,\n;]/).filter(function (s) { return s.trim(); }).length >= 4);
+    var sensitive = !!risks;
+    if (many && sensitive) return { level: "high", label: "Elevated", text: "Multiple hands on the message plus named sensitivities. This opportunity needs one owner of the narrative and a clear review order, or the deadline will be spent reconciling edits." };
+    if (many) return { level: "mid", label: "Moderate", text: "Several people are involved on your side. Alignment is cheaper early: agree on the core claim before drafts circulate, not after." };
+    if (sensitive) return { level: "mid", label: "Moderate", text: "Sensitivities are named, which is good. They should shape the framing from the first draft, not get patched in at review." };
+    return { level: "low", label: "Low", text: "A contained group and no flagged sensitivities. Keep it that way by locking the core claim before inviting feedback." };
+  }
+
+  var STABILIZE = {
+    story: "The claim itself. Before any materials get built, Portfolio Haus would name the headline: what this opportunity is actually arguing, for this audience, in one sentence everyone involved can repeat.",
+    proof: "The evidence. The claims are close, so the first move is an evidence inventory: matching what you can prove to what this audience needs to believe, and flagging where the receipts are thin.",
+    materials: "The production plan. The story is there, so the first move is a materials map: what this opportunity requires, in what order, with the narrative core written once and reused everywhere.",
+    stakeholders: "The alignment. Before drafts multiply, Portfolio Haus would get the involved voices onto one core claim and one review order, so the deadline is spent improving the story instead of arbitrating it.",
+    timeline: "The sequence. When everything is due at once, the first move is separating what must be excellent from what must merely exist, and putting the narrative core at the front of the line.",
+    all: "The diagnosis. When everything feels messy, something specific is usually driving it. Portfolio Haus would start with a short structured review to find the real blocker, then sequence the rest around it."
+  };
+
+  function suggestNext(days, msgState, messiest) {
+    if (days !== null && days >= 0 && days <= 30) {
+      return "Proposal / Funding Narrative Support, scoped to this deadline. Send this brief and Portfolio Haus will reply with a same-week read on what is achievable in the time remaining.";
+    }
+    if (msgState === "scratch" || msgState === "scattered" || messiest === "story") {
+      return "A focused Doctrine Build\u2122 Sprint to name the claim and structure the proof before production begins. Send this brief to start that conversation.";
+    }
+    if (messiest === "proof") {
+      return "An evidence-focused engagement: organizing the proof behind your claims into language this decision audience can act on. Send this brief and Portfolio Haus will map the gaps.";
+    }
+    return "A short scoping conversation. This opportunity is in reasonable shape, which means the goal is precision, not rescue. Send this brief and Portfolio Haus will reply with where the leverage is.";
+  }
+
+  function esc(s) { return s; } /* textContent assignment used below; no HTML injection */
+
+  function buildBrief() {
+    var name = v("f-name");
+    var type = v("f-type");
+    var deadline = v("f-deadline");
+    var objective = v("f-objective");
+    var audience = v("f-audience");
+    var stakeholders = v("f-stakeholders");
+    var msgState = document.getElementById("f-msgstate").value;
+    var msgStateLabel = document.getElementById("f-msgstate").selectedOptions[0].textContent;
+    var proof = v("f-proof");
+    var gaps = v("f-gaps");
+    var materials = v("f-materials");
+    var risks = v("f-risks");
+    var success = v("f-success");
+    var messiest = document.getElementById("f-messiest").value;
+
+    var days = daysUntil(deadline);
+    var tRisk = timelineRisk(days);
+    var mRisk = messagingRisk(msgState);
+    var sRisk = stakeholderRisk(stakeholders, risks);
+
+    var today = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+    var deadlineLabel = deadline ? new Date(deadline + "T12:00:00").toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }) : "Not yet set";
+
+    document.getElementById("b-name").textContent = name;
+    document.getElementById("b-meta").textContent = type + " \u00B7 Deadline: " + deadlineLabel + " \u00B7 Prepared " + today;
+
+    var flags = document.getElementById("b-flags");
+    flags.innerHTML = "";
+    [["Timeline: " + tRisk.label, tRisk.level], ["Messaging: " + mRisk.label, mRisk.level], ["Stakeholders: " + sRisk.label, sRisk.level]].forEach(function (f) {
+      var s = document.createElement("span");
+      s.className = "brief-flag " + f[1];
+      s.textContent = f[0];
+      flags.appendChild(s);
+    });
+
+    var summary = name + " is a " + type.toLowerCase() + (deadline ? " with a decision date of " + deadlineLabel + "." : " without a set decision date yet.") +
+      " The objective: " + objective + (success ? " Success would mean: " + success : "");
+
+    document.getElementById("b-summary").textContent = summary;
+    document.getElementById("b-audience").textContent = orNote(audience, "Not yet defined.");
+    document.getElementById("b-objective").textContent = objective;
+    document.getElementById("b-proof").textContent = orNote(proof, "None listed. If proof exists, it has not been gathered here yet, which usually means it has not been gathered anywhere yet.");
+    document.getElementById("b-gaps").textContent = orNote(gaps, "None named. Worth a second look: opportunities of this kind almost always test at least one unproven claim.");
+    document.getElementById("b-materials").textContent = orNote(materials, "Not yet listed. Pull the requirements from the opportunity itself before anything gets drafted.");
+    document.getElementById("b-timeline").textContent = tRisk.text;
+    document.getElementById("b-msgrisk").textContent = mRisk.text + " Current state: " + msgStateLabel.toLowerCase();
+    document.getElementById("b-stakerisk").textContent = sRisk.text + (stakeholders ? " Involved: " + stakeholders : "") + (risks ? " Flagged sensitivities: " + risks : "");
+    document.getElementById("b-stabilize").textContent = STABILIZE[messiest];
+    document.getElementById("b-next").textContent = suggestNext(days, msgState, messiest);
+
+    var lines = [];
+    lines.push("OPPORTUNITY READINESS BRIEF");
+    lines.push("Prepared with a Portfolio Haus instrument \u00B7 " + today);
+    lines.push("");
+    lines.push("OPPORTUNITY: " + name);
+    lines.push("TYPE: " + type);
+    lines.push("DEADLINE / DECISION DATE: " + deadlineLabel);
+    lines.push("HAUS SIGNAL: Timeline " + tRisk.label + " \u00B7 Messaging " + mRisk.label + " \u00B7 Stakeholders " + sRisk.label);
+    lines.push("");
+    ["Opportunity Summary|b-summary", "Decision Audience|b-audience", "Narrative Objective|b-objective",
+     "Evidence Available|b-proof", "Evidence Gaps|b-gaps", "Materials Needed|b-materials",
+     "Timeline Risk|b-timeline", "Messaging Risk|b-msgrisk", "Stakeholder Risk|b-stakerisk",
+     "What Portfolio Haus Would Stabilize First|b-stabilize", "Suggested Next Step|b-next"].forEach(function (pair) {
+      var parts = pair.split("|");
+      lines.push(parts[0].toUpperCase());
+      lines.push(document.getElementById(parts[1]).textContent);
+      lines.push("");
+    });
+    lines.push("Contact: " + MAILTO);
+    lastBriefText = lines.join("\n");
+
+    var emailBody = lastBriefText;
+    if (emailBody.length > 1600) emailBody = emailBody.slice(0, 1600) + "\n[Trimmed for email. I will paste or attach the full brief.]";
+    document.getElementById("b-email").href =
+      "mailto:" + MAILTO +
+      "?subject=" + encodeURIComponent("Opportunity Readiness Brief: " + name) +
+      "&body=" + encodeURIComponent(emailBody);
+
+    elForm.hidden = true;
+    elOut.classList.add("active");
+    elOut.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  elNext.addEventListener("click", function () {
+    if (!validateStep(step)) return;
+    if (step < TOTAL) showStep(step + 1);
+    else buildBrief();
+  });
+  elBack.addEventListener("click", function () { if (step > 1) showStep(step - 1); });
+  document.getElementById("orb-edit").addEventListener("click", function () {
+    elOut.classList.remove("active");
+    elForm.hidden = false;
+    showStep(1);
+  });
+
+  document.querySelectorAll(".field input, .field textarea, .field select").forEach(function (input) {
+    input.addEventListener("input", function () {
+      var f = input.closest(".field");
+      if (f.classList.contains("has-error") && input.value.trim()) f.classList.remove("has-error");
+    });
+  });
+
+  function confirmMsg(msg) {
+    var el = document.getElementById("b-confirm");
+    el.textContent = msg;
+    window.setTimeout(function () { if (el.textContent === msg) el.textContent = ""; }, 3500);
+  }
+
+  document.getElementById("b-copy").addEventListener("click", function () {
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = lastBriefText;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand("copy"); confirmMsg("Copied. The whole brief, ready to paste."); }
+      catch (e) { confirmMsg("Copy did not work in this browser. Use Download instead."); }
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(lastBriefText).then(function () {
+        confirmMsg("Copied. The whole brief, ready to paste.");
+      }, fallback);
+    } else { fallback(); }
+  });
+
+  document.getElementById("b-download").addEventListener("click", function () {
+    var blob = new Blob([lastBriefText], { type: "text/plain;charset=utf-8" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    var slug = v("f-name").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "opportunity";
+    a.download = "readiness-brief-" + slug + ".txt";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    confirmMsg("Downloaded. Bring it to the kickoff.");
+  });
+})();
+</script>
+
+<script>
+(function () {
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce || !("IntersectionObserver" in window)) return;
+  document.documentElement.classList.add("ph-motion");
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("revealed"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+  document.querySelectorAll(".rv").forEach(function (el) { io.observe(el); });
+})();
+</script>

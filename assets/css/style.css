@@ -287,3 +287,116 @@ p:last-child{margin-bottom:0;}
 /* ---------- Dormant future pages ---------- */
 .placeholder-section{padding-top:160px;text-align:center;}
 .placeholder-section p{max-width:540px;margin:0 auto;}
+
+/* ---------- Receive grid (used on Ways to Work, Contact, Receipts) ----------
+   These classes were referenced in page markup but never defined. Defined here
+   so those sections render as an intentional grid instead of stacked divs. */
+.receive-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 24px;max-width:820px;}
+@media (max-width:640px){.receive-grid{grid-template-columns:1fr;}}
+.receive-item{
+  position:relative;padding:10px 0 10px 22px;color:var(--ink-soft);font-size:0.98rem;
+  border-bottom:1px solid rgba(28,26,46,0.08);
+}
+.receive-item::before{content:"";position:absolute;left:0;top:1.15em;width:11px;height:2px;background:var(--coral);}
+
+/* Tools pathway strip (homepage) */
+.tools-invite{
+  margin-top:26px;background:var(--navy);color:var(--cream);
+  border-top:3px solid var(--gold);padding:28px 32px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+}
+.tools-invite h3{color:var(--cream);font-size:1.3rem;margin:0 0 6px;}
+.tools-invite p{color:var(--cream-dim);font-size:0.98rem;margin:0;max-width:520px;}
+.tools-invite .btn{flex-shrink:0;}
+@media (max-width:560px){.tools-invite{padding:24px 20px;}}
+
+/* ============================================================
+   Haus component system: shared motion and signal motifs
+   Gated on .ph-motion (set by JS only when IntersectionObserver
+   exists and reduced motion is off). Without it, everything is
+   visible and static. Safe with JavaScript disabled.
+   ============================================================ */
+
+@keyframes hlDraw{from{transform:scaleX(0);}to{transform:scaleX(1);}}
+@keyframes fadeRise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+@keyframes sigPulse{0%,100%{opacity:1;}50%{opacity:.45;}}
+
+/* Scroll reveals */
+.ph-motion .rv{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease;}
+.ph-motion .rv.revealed{opacity:1;transform:none;}
+.ph-motion .rv-2{transition-delay:.08s;}
+.ph-motion .rv-3{transition-delay:.16s;}
+.ph-motion .rv-4{transition-delay:.24s;}
+
+/* Haus Lines draw in wherever they appear */
+.ph-motion .haus-lines span{transform-origin:left;animation:hlDraw .8s cubic-bezier(.2,.7,.2,1) both .15s;}
+.ph-motion .haus-lines span:nth-child(2){animation-delay:.3s;}
+
+/* ---------- Hero: the signal field ---------- */
+.hero{position:relative;overflow:hidden;}
+.hero .container{position:relative;z-index:1;}
+.signal-field{position:absolute;inset:0;pointer-events:none;opacity:.5;}
+.signal-field span{
+  position:absolute;height:2px;background:var(--gold);transform-origin:left;
+}
+.signal-field span:nth-child(1){top:18%;left:58%;width:26%;opacity:.5;}
+.signal-field span:nth-child(2){top:34%;left:70%;width:22%;opacity:.3;background:var(--coral);}
+.signal-field span:nth-child(3){top:58%;left:64%;width:30%;opacity:.4;}
+.signal-field span:nth-child(4){top:76%;left:74%;width:18%;opacity:.25;background:var(--coral);}
+.signal-field span:nth-child(5){top:88%;left:60%;width:24%;opacity:.35;}
+.ph-motion .signal-field span{animation:hlDraw 1.2s cubic-bezier(.2,.7,.2,1) both;}
+.ph-motion .signal-field span:nth-child(1){animation-delay:.3s;}
+.ph-motion .signal-field span:nth-child(2){animation-delay:.55s;}
+.ph-motion .signal-field span:nth-child(3){animation-delay:.8s;}
+.ph-motion .signal-field span:nth-child(4){animation-delay:1.05s;}
+.ph-motion .signal-field span:nth-child(5){animation-delay:1.3s;}
+.ph-motion .signal-field span:nth-child(2),
+.ph-motion .signal-field span:nth-child(4){animation-name:hlDraw,sigPulse;animation-duration:1.2s,4s;animation-iteration-count:1,infinite;animation-timing-function:cubic-bezier(.2,.7,.2,1),ease-in-out;animation-fill-mode:both,none;}
+@media (max-width:760px){.signal-field span{display:none;}
+  .signal-field span:nth-child(1),.signal-field span:nth-child(3){display:block;left:50%;width:44%;}}
+
+.hero .closing-line{animation:fadeUp .7s ease both .2s;}
+.hero-cue{
+  display:inline-block;margin-top:34px;color:var(--cream-dim);text-decoration:none;
+  font-family:"Big Shoulders",sans-serif;font-weight:700;font-size:0.78rem;
+  letter-spacing:0.16em;text-transform:uppercase;
+  border-bottom:2px solid var(--gold);padding-bottom:5px;
+  transition:color .2s ease,border-color .2s ease;
+  animation:fadeUp .7s ease both .32s;
+}
+.hero-cue:hover{color:var(--cream);border-color:var(--coral);}
+
+/* ---------- Cards, panels, depth ---------- */
+.room-card{box-shadow:0 10px 26px -22px rgba(28,26,46,0.3);}
+.room-card:hover{box-shadow:0 16px 34px -20px rgba(28,26,46,0.35),0 0 0 1px rgba(230,168,23,0.35);border-color:var(--gold);}
+.ph-motion .builds-item{border-top-color:transparent;position:relative;}
+.ph-motion .builds-item::before{content:"";position:absolute;top:-2px;left:0;height:2px;width:100%;background:var(--coral);transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.2,.7,.2,1);}
+.ph-motion .revealed.builds-item::before,.ph-motion .revealed .builds-item::before{transform:scaleX(1);}
+
+/* ---------- Tools strip: live signal ---------- */
+.tools-invite{transition:transform .25s ease,box-shadow .25s ease;box-shadow:0 18px 40px -26px rgba(28,26,46,0.6);}
+.tools-invite:hover{transform:translateY(-3px);box-shadow:0 24px 48px -26px rgba(28,26,46,0.65),0 0 0 1px rgba(230,168,23,0.4);}
+.invite-ticks{display:flex;gap:4px;margin-bottom:10px;}
+.invite-ticks span{width:16px;height:3px;background:var(--gold);}
+.invite-ticks span:nth-child(4){background:var(--coral);}
+.invite-ticks span:nth-child(5){background:var(--coral);opacity:.6;}
+.invite-ticks span:nth-child(6){background:var(--wine);opacity:.5;}
+.ph-motion .invite-ticks span{transform-origin:left;animation:hlDraw .4s ease both;}
+.ph-motion .invite-ticks span:nth-child(2){animation-delay:.08s;}
+.ph-motion .invite-ticks span:nth-child(3){animation-delay:.16s;}
+.ph-motion .invite-ticks span:nth-child(4){animation-delay:.24s;}
+.ph-motion .invite-ticks span:nth-child(5){animation-delay:.32s;}
+.ph-motion .invite-ticks span:nth-child(6){animation-delay:.4s;animation-name:hlDraw,sigPulse;animation-duration:.4s,3.2s;animation-iteration-count:1,infinite;animation-fill-mode:both,none;animation-timing-function:ease,ease-in-out;}
+
+/* ---------- Buttons: lift with meaning ---------- */
+.btn{transition:transform .2s ease,box-shadow .2s ease,background .2s ease,color .2s ease;}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 26px -12px rgba(230,168,23,0.6);}
+
+/* ---------- Reduced motion: instant and still ---------- */
+@media (prefers-reduced-motion:reduce){
+  .hero .kicker,.hero h1,.hero .lede,.hero .cta-row,.hero .closing-line,.hero-cue,
+  .signal-field span,.haus-lines span,.invite-ticks span{animation:none !important;}
+  .rv{opacity:1 !important;transform:none !important;transition:none !important;}
+  .btn,.room-card,.tools-invite{transition:none !important;}
+  .btn-gold:hover,.room-card:hover,.tools-invite:hover{transform:none !important;}
+}

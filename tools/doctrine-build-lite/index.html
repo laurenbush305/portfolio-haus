@@ -1,0 +1,438 @@
+---
+layout: default
+title: Doctrine Build&trade; Diagnostic Lite | Portfolio Haus
+description: A working diagnostic used inside Portfolio Haus discovery, onboarding, and strategy sessions.
+extra_css:
+  - /assets/css/tools.css
+noindex: true
+---
+
+<div id="top"></div>
+
+<section class="tool-hero">
+  <div class="container">
+    <span class="private-badge">Working Instrument &middot; Used Inside Engagements</span>
+    <p class="eyebrow">Portfolio Haus Tools</p>
+    <h1>Doctrine Build&trade; Diagnostic Lite</h1>
+    <div class="haus-lines"><span></span><span></span></div>
+    <p class="tool-sub">A structured read on the state of an organization's message: the claim, the believers, the evidence, and how far the story can travel today.</p>
+    <p class="tool-promise">This is the diagnostic, not the doctrine. It names the shape of the problem. The full Doctrine Build&trade; is where the problem gets solved.</p>
+    <p class="hero-use">Working instrument &middot; <b>Used inside Portfolio Haus engagements</b> &middot; Not a substitute for strategy</p>
+  </div>
+</section>
+
+<section class="tool-body">
+  <div class="container">
+    <div class="tool-frame">
+
+      <div class="tool-panel" id="dbl-form">
+
+        <div class="field" data-required>
+          <label for="d-org">Organization or body of work</label>
+          <input type="text" id="d-org" placeholder="Who is this diagnostic reading?">
+          <span class="field-error">Name the organization or the work being assessed.</span>
+        </div>
+
+        <!-- 1. The Claim -->
+        <p class="form-step-title" style="margin-top:26px;">1. The Claim</p>
+        <div class="field">
+          <label for="d-claim">What does this organization stand for? <span class="hint">In their words, as heard. Resist the urge to fix it here. That comes later, and it is billable.</span></label>
+          <textarea id="d-claim"></textarea>
+        </div>
+        <div class="field" data-rate="clarity">
+          <label>How clearly can they say it today?</label>
+          <div class="rate-group" role="radiogroup" aria-label="Doctrine clarity">
+            <label><input type="radio" name="rate-clarity" value="1"><span>1 &middot; Different answer every telling</span></label>
+            <label><input type="radio" name="rate-clarity" value="2"><span>2 &middot; A theme exists, the sentence does not</span></label>
+            <label><input type="radio" name="rate-clarity" value="3"><span>3 &middot; Named, with some wobble</span></label>
+            <label><input type="radio" name="rate-clarity" value="4"><span>4 &middot; Named and repeated consistently</span></label>
+          </div>
+        </div>
+
+        <!-- 2. The Believers -->
+        <p class="form-step-title" style="margin-top:26px;">2. The Believers</p>
+        <div class="field">
+          <label for="d-audience">Who needs to believe it? <span class="hint">Funders, members, boards, partners, the public. Who, specifically, and in what order.</span></label>
+          <textarea id="d-audience"></textarea>
+        </div>
+        <div class="field" data-rate="audience">
+          <label>How precisely is that audience defined?</label>
+          <div class="rate-group" role="radiogroup" aria-label="Audience precision">
+            <label><input type="radio" name="rate-audience" value="1"><span>1 &middot; Everyone, which is no one</span></label>
+            <label><input type="radio" name="rate-audience" value="2"><span>2 &middot; Broad categories, no priority</span></label>
+            <label><input type="radio" name="rate-audience" value="3"><span>3 &middot; Named audiences, loose sequencing</span></label>
+            <label><input type="radio" name="rate-audience" value="4"><span>4 &middot; Specific, prioritized, understood</span></label>
+          </div>
+        </div>
+
+        <!-- 3. The Evidence -->
+        <p class="form-step-title" style="margin-top:26px;">3. The Evidence</p>
+        <div class="field">
+          <label for="d-evidence">What evidence supports the claim? <span class="hint">Outcomes, data, testimonials, track record. What exists, and where does it live.</span></label>
+          <textarea id="d-evidence"></textarea>
+        </div>
+        <div class="field" data-rate="evidence">
+          <label>How strong and reachable is it?</label>
+          <div class="rate-group" role="radiogroup" aria-label="Evidence strength">
+            <label><input type="radio" name="rate-evidence" value="1"><span>1 &middot; Anecdote and confidence</span></label>
+            <label><input type="radio" name="rate-evidence" value="2"><span>2 &middot; Exists, scattered, unassembled</span></label>
+            <label><input type="radio" name="rate-evidence" value="3"><span>3 &middot; Gathered, not yet in usable language</span></label>
+            <label><input type="radio" name="rate-evidence" value="4"><span>4 &middot; Organized, current, quotable</span></label>
+          </div>
+        </div>
+
+        <!-- 4. The Travel -->
+        <p class="form-step-title" style="margin-top:26px;">4. The Travel</p>
+        <div class="field">
+          <label for="d-travel">Where does the story need to travel? <span class="hint">Website, proposals, board rooms, press, partner channels, the halls of a conference.</span></label>
+          <textarea id="d-travel"></textarea>
+        </div>
+        <div class="field" data-rate="travel">
+          <label>How ready is it to travel today?</label>
+          <div class="rate-group" role="radiogroup" aria-label="Story travel readiness">
+            <label><input type="radio" name="rate-travel" value="1"><span>1 &middot; Requires a live explainer</span></label>
+            <label><input type="radio" name="rate-travel" value="2"><span>2 &middot; Travels with heavy escort</span></label>
+            <label><input type="radio" name="rate-travel" value="3"><span>3 &middot; Travels to friendly audiences</span></label>
+            <label><input type="radio" name="rate-travel" value="4"><span>4 &middot; Travels alone, arrives intact</span></label>
+          </div>
+        </div>
+
+        <!-- 5. The Moment -->
+        <p class="form-step-title" style="margin-top:26px;">5. The Moment</p>
+        <div class="field">
+          <label for="d-moment">What decision, opportunity, or audience moment must the message support? <span class="hint">A proposal, a funding cycle, a launch, a leadership transition. The thing with a date on it, if there is one.</span></label>
+          <textarea id="d-moment"></textarea>
+        </div>
+
+        <!-- 6. The Friction -->
+        <p class="form-step-title" style="margin-top:26px;">6. The Friction</p>
+        <div class="field">
+          <label>Where is the message breaking? <span class="hint">Check what applies. Multiple is normal. All four is a Tuesday.</span></label>
+          <div class="check-group">
+            <label><input type="checkbox" id="fric-unclear"> Unclear: the claim itself is fuzzy or contested</label>
+            <label><input type="checkbox" id="fric-unsupported"> Unsupported: claims travel without receipts</label>
+            <label><input type="checkbox" id="fric-overcomplicated"> Overcomplicated: true, but nobody can hold it</label>
+            <label><input type="checkbox" id="fric-notportable"> Not portable: dies outside the founder's mouth</label>
+          </div>
+        </div>
+
+        <!-- 7. The Handoff -->
+        <div class="field" data-rate="handoff" style="margin-top:12px;">
+          <label>If the main explainer stepped away, would the message hold?</label>
+          <div class="rate-group" role="radiogroup" aria-label="Handoff resilience">
+            <label><input type="radio" name="rate-handoff" value="1"><span>1 &middot; It leaves with them</span></label>
+            <label><input type="radio" name="rate-handoff" value="2"><span>2 &middot; It softens fast</span></label>
+            <label><input type="radio" name="rate-handoff" value="3"><span>3 &middot; It holds with some drift</span></label>
+            <label><input type="radio" name="rate-handoff" value="4"><span>4 &middot; It is documented and used</span></label>
+          </div>
+        </div>
+
+        <!-- Notes -->
+        <div class="field" style="margin-top:14px;">
+          <label for="d-notes">Session notes <span class="hint">What was said between the lines. Included in the output.</span></label>
+          <textarea id="d-notes" style="min-height:110px;"></textarea>
+        </div>
+
+        <p class="field-error" id="dbl-rating-error" style="display:none;font-family:'Crimson Pro',serif;font-style:italic;color:var(--wine);margin:0 0 14px;">All five ratings are needed to score the diagnostic. The blank ones are marked.</p>
+        <button class="btn btn-gold" id="dbl-run" type="button">Score the Diagnostic</button>
+      </div>
+
+      <!-- Output -->
+      <div class="brief-output" id="dbl-output" aria-live="polite">
+        <div class="brief-doc">
+          <p class="brief-marque">Doctrine Build&trade; Lite &middot; Diagnostic Result</p>
+          <h3 id="o-org"></h3>
+          <p class="brief-date" id="o-date"></p>
+
+          <div class="signal-check">
+            <p class="signal-label">Haus Signal</p>
+            <div id="o-signal"></div>
+          </div>
+
+          <div class="brief-section"><h4>Doctrine Clarity</h4><p id="o-clarity"></p></div>
+          <div class="brief-section"><h4>Evidence Strength</h4><p id="o-evidence"></p></div>
+          <div class="brief-section"><h4>Audience Precision</h4><p id="o-audience"></p></div>
+          <div class="brief-section"><h4>Story Travel Readiness</h4><p id="o-travel"></p></div>
+          <div class="brief-section"><h4>Handoff Risk</h4><p id="o-handoff"></p></div>
+          <div class="brief-section"><h4>Friction Observed</h4><p id="o-friction"></p></div>
+          <div class="brief-section"><h4>The Moment This Must Support</h4><p id="o-moment"></p></div>
+
+          <div class="result-next" style="margin-top:26px;">
+            <h4>Recommended Engagement Path</h4>
+            <p class="offer-name" id="o-path"></p>
+            <p id="o-pathdesc"></p>
+          </div>
+
+          <div class="brief-section"><h4>Session Notes</h4><p id="o-notes"></p></div>
+        </div>
+
+        <div class="tool-actions">
+          <button class="btn-tool primary" id="o-copy" type="button">Copy Result</button>
+          <button class="btn-tool" id="o-download" type="button">Download as .txt</button>
+          <a class="btn-tool" id="o-email" href="#">Send to Portfolio Haus</a>
+        </div>
+        <p class="action-confirm" id="o-confirm"></p>
+        <div class="tool-restart">
+          <button type="button" id="dbl-edit">&larr; Back to the diagnostic</button>
+        </div>
+      </div>
+
+      <p class="tool-footnote">Diagnostic Lite gives the shape of the problem. The full Doctrine Build&trade; gives the doctrine, the evidence architecture, and the materials that carry it. That distinction is the business model.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  "use strict";
+
+  var MAILTO = "biz.portfoliohaus@gmail.com";
+  var lastText = "";
+
+  var READS = {
+    clarity: {
+      1: "The claim changes with the teller. Before anything else, this organization needs one named sentence about what it stands for.",
+      2: "A theme is present but the sentence is not. The raw material for a claim exists; it has not been forged yet.",
+      3: "The claim is named and mostly holds, with wobble at the edges. Tightening, not rebuilding.",
+      4: "The claim is named, repeated, and owned. Rare, and worth protecting."
+    },
+    evidence: {
+      1: "The claim is traveling on confidence alone. Any skeptical audience will find the gap quickly.",
+      2: "Evidence exists but is scattered and unassembled. The proof is real; the receipts are not gathered.",
+      3: "Evidence is gathered but not yet translated into usable, quotable language.",
+      4: "Evidence is organized, current, and ready to sit next to the claim. Strong position."
+    },
+    audience: {
+      1: "The message is aimed at everyone, which in practice means no one has been chosen. Audience definition comes before message design.",
+      2: "Audiences exist as broad categories without priority. The message cannot sequence itself.",
+      3: "Audiences are named but loosely sequenced. Precision work, not discovery work.",
+      4: "The decision audiences are specific, prioritized, and understood. The message has a target."
+    },
+    travel: {
+      1: "The story requires a live explainer to make sense. It does not travel; it is escorted.",
+      2: "The story travels with heavy support: follow-up calls, clarifying decks, the founder on standby.",
+      3: "The story travels to friendly audiences and struggles with skeptical ones. It needs armor, not a rewrite.",
+      4: "The story travels alone and arrives intact. The infrastructure is doing its job."
+    },
+    handoff: {
+      1: "The message leaves with its explainer. This is the highest structural risk on the board.",
+      2: "The message softens quickly without its main voice. Documentation is thin or unused.",
+      3: "The message mostly holds through transitions, with drift. Maintenance risk, not crisis risk.",
+      4: "The message is documented and actually used. Handoff risk is low."
+    }
+  };
+
+  var PATHS = {
+    system: {
+      name: "Institutional Narrative System",
+      desc: "Multiple foundations are soft at once: the claim, the evidence, and the audience map need to be built together, not patched separately. This is full narrative infrastructure work, sequenced Diagnose, Design, Deliver."
+    },
+    sprint: {
+      name: "Doctrine Build\u2122 Sprint",
+      desc: "The core issue is the doctrine itself: what this organization stands for and the evidence that makes it believable. A focused sprint names the claim, structures the proof, and produces language built to travel."
+    },
+    audit: {
+      name: "Message Audit",
+      desc: "The foundations are mostly in place. A focused audit will name what is unclear or underbuilt, sharpen the audience sequencing, and hand back the strongest version of the existing message."
+    },
+    proposal: {
+      name: "Proposal / Funding Narrative Support",
+      desc: "There is a live moment on the calendar and the story is not yet ready to compete for it. The engagement should be scoped to that moment: claim, proof, and ask, built against the real deadline."
+    },
+    handoff: {
+      name: "Implementation-Ready Handoff",
+      desc: "The message works; its survival does not. The engagement is documentation the next person can run: message guides, briefs, and working materials that hold without a live explanation."
+    }
+  };
+
+  function rate(name) {
+    var el = document.querySelector('input[name="rate-' + name + '"]:checked');
+    return el ? Number(el.value) : null;
+  }
+  function v(id) { return document.getElementById(id).value.trim(); }
+
+  function choosePath(s, hasMoment) {
+    var handoffRisk = 5 - s.handoff;
+    var lowCount = [s.clarity, s.evidence, s.audience].filter(function (x) { return x <= 2; }).length;
+    if (lowCount >= 2) return "system";
+    if (s.clarity <= 2 || s.evidence <= 2) return "sprint";
+    if (hasMoment && s.travel <= 2) return "proposal";
+    if (handoffRisk >= 3) return "handoff";
+    if (s.audience <= 2 || s.travel <= 2) return "audit";
+    return "audit";
+  }
+
+  document.querySelectorAll(".rate-group").forEach(function (group) {
+    group.addEventListener("change", function () {
+      group.querySelectorAll("label").forEach(function (l) {
+        l.classList.toggle("checked", l.querySelector("input").checked);
+      });
+      group.closest(".field").classList.remove("has-error");
+    });
+  });
+
+  document.getElementById("dbl-run").addEventListener("click", function () {
+    var ok = true;
+    var orgField = document.getElementById("d-org").closest(".field");
+    if (!v("d-org")) { orgField.classList.add("has-error"); ok = false; } else { orgField.classList.remove("has-error"); }
+
+    var scores = {};
+    ["clarity", "audience", "evidence", "travel", "handoff"].forEach(function (k) {
+      scores[k] = rate(k);
+      var f = document.querySelector('.field[data-rate="' + k + '"]');
+      if (scores[k] === null) { f.classList.add("has-error"); ok = false; }
+      else { f.classList.remove("has-error"); }
+    });
+    document.getElementById("dbl-rating-error").style.display = ok ? "none" : "block";
+    if (!ok) return;
+
+    var friction = [];
+    if (document.getElementById("fric-unclear").checked) friction.push("Unclear: the claim itself is fuzzy or contested");
+    if (document.getElementById("fric-unsupported").checked) friction.push("Unsupported: claims travel without receipts");
+    if (document.getElementById("fric-overcomplicated").checked) friction.push("Overcomplicated: true, but nobody can hold it");
+    if (document.getElementById("fric-notportable").checked) friction.push("Not portable: the story dies outside its main voice");
+
+    var moment = v("d-moment");
+    var pathKey = choosePath(scores, !!moment);
+    var path = PATHS[pathKey];
+    var today = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+
+    document.getElementById("o-org").textContent = v("d-org");
+    document.getElementById("o-date").textContent = "Prepared " + today;
+
+    /* Signal rows: 4 ticks per dimension. Handoff shown as risk (inverted). */
+    var handoffRisk = 5 - scores.handoff;
+    var rows = [
+      ["Clarity", scores.clarity, false],
+      ["Evidence", scores.evidence, false],
+      ["Audience", scores.audience, false],
+      ["Travel", scores.travel, false],
+      ["Handoff Risk", handoffRisk, true]
+    ];
+    var wrap = document.getElementById("o-signal");
+    wrap.innerHTML = "";
+    rows.forEach(function (r, ri) {
+      var val = r[1];
+      var isRisk = r[2];
+      var cls, state;
+      if (isRisk) {
+        cls = val >= 3 ? "on-high" : (val === 2 ? "on-mid" : "on-low");
+        state = val >= 3 ? "high" : (val === 2 ? "moderate" : "low");
+      } else {
+        cls = val <= 2 ? (val === 1 ? "on-high" : "on-mid") : "on-low";
+        state = val === 1 ? "critical" : val === 2 ? "soft" : val === 3 ? "workable" : "strong";
+      }
+      var ticks = "";
+      for (var i = 1; i <= 4; i++) ticks += '<span class="' + (i <= val ? cls : "") + '" style="animation-delay:' + (ri * 0.09 + 0.12 + i * 0.05).toFixed(2) + 's"></span>';
+      var row = document.createElement("div");
+      row.className = "signal-row sig-animate";
+      row.style.animationDelay = (ri * 0.09).toFixed(2) + "s";
+      row.innerHTML = '<span class="signal-name">' + r[0] + '</span><span class="signal-ticks">' + ticks + '</span><span class="signal-state">' + val + " of 4 \u00B7 " + state + "</span>";
+      wrap.appendChild(row);
+    });
+
+    document.getElementById("o-clarity").textContent = READS.clarity[scores.clarity] + (v("d-claim") ? " As stated: \u201C" + v("d-claim") + "\u201D" : "");
+    document.getElementById("o-evidence").textContent = READS.evidence[scores.evidence] + (v("d-evidence") ? " On record: " + v("d-evidence") : "");
+    document.getElementById("o-audience").textContent = READS.audience[scores.audience] + (v("d-audience") ? " Named believers: " + v("d-audience") : "");
+    document.getElementById("o-travel").textContent = READS.travel[scores.travel] + (v("d-travel") ? " Destinations: " + v("d-travel") : "");
+    document.getElementById("o-handoff").textContent = READS.handoff[scores.handoff];
+    document.getElementById("o-friction").textContent = friction.length ? friction.join(". ") + "." : "No friction boxes checked. Either genuinely healthy or not yet examined closely.";
+    document.getElementById("o-moment").textContent = moment || "No specific moment named. The engagement can be built ahead of pressure, which is the cheapest time to build it.";
+    document.getElementById("o-path").textContent = path.name;
+    document.getElementById("o-pathdesc").textContent = path.desc;
+    document.getElementById("o-notes").textContent = v("d-notes") || "None recorded.";
+
+    var lines = [];
+    lines.push("DOCTRINE BUILD LITE: DIAGNOSTIC RESULT");
+    lines.push("Portfolio Haus \u00B7 " + today);
+    lines.push("");
+    lines.push("SUBJECT: " + v("d-org"));
+    lines.push("");
+    lines.push("HAUS SIGNAL (1 to 4)");
+    rows.forEach(function (r) { lines.push("  " + r[0] + ": " + r[1] + " of 4"); });
+    lines.push("");
+    [["DOCTRINE CLARITY", "o-clarity"], ["EVIDENCE STRENGTH", "o-evidence"], ["AUDIENCE PRECISION", "o-audience"],
+     ["STORY TRAVEL READINESS", "o-travel"], ["HANDOFF RISK", "o-handoff"], ["FRICTION OBSERVED", "o-friction"],
+     ["THE MOMENT THIS MUST SUPPORT", "o-moment"]].forEach(function (p) {
+      lines.push(p[0]);
+      lines.push(document.getElementById(p[1]).textContent);
+      lines.push("");
+    });
+    lines.push("RECOMMENDED ENGAGEMENT PATH");
+    lines.push(path.name + ": " + path.desc);
+    lines.push("");
+    lines.push("SESSION NOTES");
+    lines.push(document.getElementById("o-notes").textContent);
+    lastText = lines.join("\n");
+
+    var emailBody = lastText;
+    if (emailBody.length > 1600) emailBody = emailBody.slice(0, 1600) + "\n[Trimmed for email. Full result via Copy or Download.]";
+    document.getElementById("o-email").href =
+      "mailto:" + MAILTO +
+      "?subject=" + encodeURIComponent("Doctrine Build Lite result: " + v("d-org")) +
+      "&body=" + encodeURIComponent(emailBody);
+
+    document.getElementById("dbl-form").hidden = true;
+    document.getElementById("dbl-output").classList.add("active");
+    document.getElementById("dbl-output").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  document.getElementById("dbl-edit").addEventListener("click", function () {
+    document.getElementById("dbl-output").classList.remove("active");
+    document.getElementById("dbl-form").hidden = false;
+    document.getElementById("dbl-form").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  function confirmMsg(msg) {
+    var el = document.getElementById("o-confirm");
+    el.textContent = msg;
+    window.setTimeout(function () { if (el.textContent === msg) el.textContent = ""; }, 3500);
+  }
+
+  document.getElementById("o-copy").addEventListener("click", function () {
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = lastText;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand("copy"); confirmMsg("Copied."); }
+      catch (e) { confirmMsg("Copy did not work in this browser. Use Download instead."); }
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(lastText).then(function () { confirmMsg("Copied."); }, fallback);
+    } else { fallback(); }
+  });
+
+  document.getElementById("o-download").addEventListener("click", function () {
+    var blob = new Blob([lastText], { type: "text/plain;charset=utf-8" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    var slug = v("d-org").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "diagnostic";
+    a.download = "doctrine-build-lite-" + slug + ".txt";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    confirmMsg("Downloaded.");
+  });
+})();
+</script>
+
+<script>
+(function () {
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce || !("IntersectionObserver" in window)) return;
+  document.documentElement.classList.add("ph-motion");
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("revealed"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+  document.querySelectorAll(".rv").forEach(function (el) { io.observe(el); });
+})();
+</script>

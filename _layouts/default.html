@@ -29,6 +29,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders:wght@600;700;800&family=Crimson+Pro:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+{% if page.extra_css %}{% for css in page.extra_css %}<link rel="stylesheet" href="{{ css | relative_url }}">
+{% endfor %}{% endif %}{% if page.signal %}<link rel="stylesheet" href="{{ '/assets/css/haus-signal.css' | relative_url }}">
+{% endif %}{% if page.noindex %}<meta name="robots" content="noindex, nofollow">
+{% endif %}
 
 <!-- Structured data for search engines -->
 <script type="application/ld+json">
@@ -46,5 +50,6 @@
 {% include nav.html %}
 {{ content }}
 {% include footer.html %}
+{% if page.signal %}{% include haus-signal.html %}{% endif %}
 </body>
 </html>

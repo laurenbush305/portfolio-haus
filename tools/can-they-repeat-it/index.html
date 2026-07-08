@@ -1,0 +1,604 @@
+---
+layout: default
+title: Can They Repeat It?&trade; | Portfolio Haus
+description: A Portfolio Haus diagnostic for work that keeps getting re-explained. Ten questions. One sharper read on where the message is breaking.
+extra_css:
+  - /assets/css/tools.css
+---
+
+<div id="top"></div>
+
+<section class="tool-hero">
+  <div class="container">
+    <p class="eyebrow">Portfolio Haus Tools</p>
+    <h1>Can They Repeat It?&trade;</h1>
+    <div class="haus-lines"><span></span><span></span></div>
+    <p class="tool-sub">Before you rewrite the deck, check the handoff.</p>
+    <p class="tool-promise">If your work only makes sense when you are in the room explaining it, the message is not ready to travel yet.</p>
+    <p class="hero-use">Ten questions &middot; <b>One sharper read</b> on where the message is breaking</p>
+  </div>
+</section>
+
+<section class="tool-body">
+  <div class="container">
+    <div class="tool-frame">
+
+      <!-- Intro -->
+      <div class="tool-panel" id="ctri-intro">
+        <p class="result-kicker" style="color:var(--coral);">Before You Start</p>
+        <h2 style="font-size:1.5rem;margin:0 0 12px;">The work may be strong. The handoff may not be.</h2>
+        <p style="color:var(--ink-soft);font-size:1rem;margin:0 0 10px;">Answer for one specific body of work: your organization, a program, an initiative, a proposal. This diagnostic reads pressure across the five places messages break in transit: the headline, the receipts, the audience, the timeline, and the handoff.</p>
+        <p style="color:var(--ink-soft);font-size:1rem;margin:0 0 18px;">At the end you get a Haus Signal reading, a named diagnosis, and the first thing to stabilize. Keep it, send it, or bring it to your next meeting.</p>
+        <ul class="signal-legend" aria-label="How to read the Haus Signal">
+          <li>Steady</li>
+          <li class="lg-mid">Strained</li>
+          <li class="lg-high">Running the show</li>
+        </ul>
+        <div class="meta-row"><span>Free</span><span>About 3 minutes</span><span>No signup</span><span>Nothing leaves this page unless you send it</span></div>
+        <button class="btn btn-gold" id="ctri-start" type="button">Run the Diagnostic</button>
+      </div>
+
+      <!-- Quiz -->
+      <div class="tool-panel" id="ctri-quiz" hidden>
+        <div class="tool-progress">
+          <span class="count" id="ctri-count">Question 1 of 10</span>
+          <div class="progress-cells" id="ctri-cells" aria-hidden="true"></div>
+        </div>
+        <div id="ctri-qwrap">
+          <p class="quiz-dim" id="ctri-dim"></p>
+          <p class="quiz-question" id="ctri-question"></p>
+          <p class="quiz-note" id="ctri-note"></p>
+          <div class="quiz-options" id="ctri-options" role="group" aria-labelledby="ctri-question"></div>
+        </div>
+        <button class="quiz-back" id="ctri-back" type="button" hidden>&larr; Previous question</button>
+      </div>
+
+      <!-- Result -->
+      <div class="result-wrap" id="ctri-result" aria-live="polite">
+        <div class="tool-panel">
+
+          <div class="result-badge">
+            <p class="result-kicker">Your Read</p>
+            <h2 class="result-title" id="r-title"></h2>
+            <p class="result-plain" id="r-plain"></p>
+            <p class="result-tagline" id="r-tagline"></p>
+            <div class="signal-check on-navy" id="r-signal">
+              <p class="signal-label">Haus Signal</p>
+              <!-- rows injected -->
+            </div>
+          </div>
+
+          <div class="result-section first rv">
+            <h4>What This Means</h4>
+            <p id="r-meaning" class="result-lead"></p>
+          </div>
+
+          <div class="result-grid rv">
+            <div class="result-section">
+              <h4>What Is Working</h4>
+              <p id="r-working"></p>
+            </div>
+            <div class="result-section">
+              <h4>What Is Getting in the Way</h4>
+              <p id="r-blocker"></p>
+            </div>
+          </div>
+
+          <div class="result-section risk rv">
+            <h4>The Risk</h4>
+            <p id="r-risk"></p>
+          </div>
+
+          <div class="stabilize-callout rv">
+            <h4>Stabilize This First</h4>
+            <p id="r-stabilize"></p>
+          </div>
+
+          <div class="result-next rv">
+            <h4>Recommended Portfolio Haus Next Step</h4>
+            <p class="offer-name" id="r-offer"></p>
+            <p id="r-offerdesc"></p>
+            <a class="btn btn-gold" id="r-cta" href="#">Start the Conversation</a>
+          </div>
+
+          <div class="quick-read rv" id="r-quick">
+            <span class="qr-tag">The Quick Read</span>
+            <p class="qr-title" id="q-title"></p>
+            <p class="qr-plain" id="q-plain"></p>
+            <div class="qr-row"><span class="qr-label">The Risk</span><span class="qr-value" id="q-risk"></span></div>
+            <div class="qr-row"><span class="qr-label">Stabilize First</span><span class="qr-value" id="q-fix"></span></div>
+            <div class="qr-row"><span class="qr-label">Next Step</span><span class="qr-value" id="q-offer"></span></div>
+            <div class="qr-foot">
+              <span class="qr-brand">Can They Repeat It?&trade; &middot; portfolio.haus</span>
+              <a class="btn-tool primary" id="q-cta" href="#">Start the Conversation</a>
+            </div>
+          </div>
+
+          <div class="tool-actions">
+            <a class="btn-tool primary" id="r-email" href="#">Send Your Result to Portfolio Haus</a>
+            <button class="btn-tool" id="r-copy" type="button">Copy Result</button>
+            <button class="btn-tool" id="r-download" type="button">Download as .txt</button>
+          </div>
+          <p class="action-confirm" id="r-confirm"></p>
+
+          <div class="tool-restart">
+            <button type="button" id="ctri-restart">Run it again for different work &rarr;</button>
+          </div>
+        </div>
+      </div>
+
+      <p class="tool-footnote">Diagnosis is free. The rebuild is the engagement.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  "use strict";
+
+  var DIMS = ["headline", "receipts", "audience", "deadline", "handoff"];
+  var DIM_LABELS = { headline: "Headline", receipts: "Receipts", audience: "Audience", deadline: "Timeline", handoff: "Handoff" };
+  var DIM_READS = { headline: "Reading the headline", receipts: "Reading the receipts", audience: "Reading the audience", deadline: "Reading the timeline", handoff: "Reading the handoff" };
+
+  var QUESTIONS = [
+    { dim: "headline",
+      q: "If three people on your team were asked what this work does, in separate rooms, you would get:",
+      note: "Be honest. The rooms are separate for a reason.",
+      opts: [
+        ["The same sentence, almost word for word.", 0],
+        ["The same idea in different words.", 1],
+        ["Three related but noticeably different answers.", 2],
+        ["Three different presentations, honestly.", 3]
+      ]},
+    { dim: "headline",
+      q: "The one-sentence version of your work currently:",
+      opts: [
+        ["Exists, and people repeat it back to us.", 0],
+        ["Exists, but it is a paragraph wearing a sentence's clothes.", 2],
+        ["Exists in my head.", 2],
+        ["Which one-sentence version?", 3]
+      ]},
+    { dim: "receipts",
+      q: "When someone asks for proof the work works, you:",
+      opts: [
+        ["Send one link or one page. Done.", 0],
+        ["Pull from a few decks and stitch something together.", 2],
+        ["Say we have that somewhere, and mean it.", 3],
+        ["Redirect the conversation to the mission.", 3]
+      ]},
+    { dim: "receipts",
+      q: "Your results, outcomes, and testimonials currently live:",
+      opts: [
+        ["In one organized, current place.", 0],
+        ["Across a few documents that mostly agree.", 1],
+        ["Strong on vision, lighter on documentation.", 2],
+        ["In folders, inboxes, and one former colleague's laptop.", 3]
+      ]},
+    { dim: "audience",
+      q: "Who most needs to understand this work right now?",
+      opts: [
+        ["One specific decision audience, and we can name them.", 0],
+        ["Two or three audiences we message differently on purpose.", 1],
+        ["Everyone. Funders, partners, boards, the public.", 3],
+        ["We have not decided, and it shows.", 3]
+      ]},
+    { dim: "audience",
+      q: "When you explain the work to funders versus community versus your board:",
+      opts: [
+        ["The framing adjusts. The core claim does not.", 0],
+        ["We wing it well.", 1],
+        ["We use the same deck for everyone and hope.", 2],
+        ["We basically start over each time.", 3]
+      ]},
+    { dim: "deadline",
+      q: "Is there a proposal, funding deadline, decision, or public moment attached to this work?",
+      opts: [
+        ["No. We are building ahead of need.", 0],
+        ["Yes, comfortably in the distance.", 1],
+        ["Yes, close enough to influence decisions.", 2],
+        ["Yes, and it is currently in charge.", 3]
+      ]},
+    { dim: "deadline",
+      q: "The materials for your next big moment are:",
+      opts: [
+        ["Drafted and reviewed.", 0],
+        ["In progress, with a plan.", 1],
+        ["Being assembled from older materials at speed.", 2],
+        ["Going to be written the week they are due, aren't they.", 3]
+      ]},
+    { dim: "handoff",
+      q: "If you stepped away for a month, the message would:",
+      opts: [
+        ["Hold. It is documented and in use.", 0],
+        ["Mostly hold, with some drift.", 1],
+        ["Soften into something more generic.", 2],
+        ["Leave with me.", 3]
+      ]},
+    { dim: "handoff",
+      q: "When someone new picks up the work, they learn it by:",
+      note: "New staff, new partner, new vendor. Same question.",
+      opts: [
+        ["Reading the materials. They exist and they are good.", 0],
+        ["A mix of documents and asking whoever knows.", 1],
+        ["Shadowing whoever explains it best.", 2],
+        ["A live explanation that has never been written down.", 3]
+      ]}
+  ];
+
+  var STRENGTHS = {
+    headline: "Your core claim is in decent shape. People can find the point without a tour guide.",
+    receipts: "Your proof exists and is reachable. That is rarer than you would think.",
+    audience: "You know who this work needs to convince. The message has a target, not a crowd.",
+    deadline: "The calendar is not running the show. You have room to make decisions instead of deliverables.",
+    handoff: "The message does not depend on one person being in the room. That is what portable looks like."
+  };
+
+  var MAILTO = "biz.portfoliohaus@gmail.com";
+
+  var RESULTS = {
+    headline: {
+      title: "Missing Headline",
+      qrisk: "If you do not name the headline, your audience will write their own.",
+      qfix: "One sentence: what this does, for whom, and why to believe it.",
+      plain: "The one-sentence version does not exist yet",
+      tagline: "The work is real. The one sentence that carries it is not, yet.",
+      meaning: "The explanation is doing the headline's job. Every conversation starts from scratch because there is no single named claim for people to pick up and carry.",
+      blocker: "Everyone close to the work describes it from their own seat. All the versions are true. None of them match.",
+      risk: "Decision-makers do not repeat paragraphs. If the headline is missing, they will write their own. You may not like their draft.",
+      stabilize: "One sentence. What this work does, for whom, and why anyone should believe it. Not the mission statement. The headline.",
+      offer: "Message Audit",
+      offerdesc: "A focused review that names what is unclear, underbuilt, or missing, and hands you the strongest version of your own claim. Most engagements start here.",
+      cta: "Start with a Message Audit",
+      subject: "Message Audit inquiry (diagnostic result: Missing Headline)"
+    },
+    receipts: {
+      title: "Receipt Gap",
+      qrisk: "Unproven claims get discounted, even the true ones.",
+      qfix: "An evidence inventory: what you can prove today, and in what form.",
+      plain: "The claim is fine. The proof is scattered",
+      tagline: "Your proof may be sitting in a folder minding its business.",
+      meaning: "The message says something worth believing. The evidence behind it is scattered, informal, or unassembled, so every request for proof becomes a scavenger hunt.",
+      blocker: "Outcomes and testimonials exist, but they have never been put in language that can sit next to the claim. Proof assembled on request is proof that arrives late.",
+      risk: "Unproven claims get discounted, even the true ones. Funders and decision-makers do not extend credit to messaging.",
+      stabilize: "An evidence inventory. What you can prove today, in what form, and which claims are currently traveling without receipts.",
+      offer: "Doctrine Build\u2122 Sprint",
+      offerdesc: "A structured Diagnose, Design, Deliver engagement that clarifies what you stand for and pairs every claim with the evidence behind it, in language built to travel.",
+      cta: "Bring This Into a Doctrine Build\u2122 Sprint",
+      subject: "Doctrine Build Sprint inquiry (diagnostic result: Receipt Gap)"
+    },
+    audience: {
+      title: "Audience Fog",
+      qrisk: "A message aimed at everyone gets edited by everyone.",
+      qfix: "Name the decision audience for the next ninety days.",
+      plain: "Nobody has decided who this is for",
+      tagline: "A message aimed at everyone reaches no one in particular.",
+      meaning: "The work is clear to you. Who it needs to convince right now is not, so the message gets adjusted live for every room. That takes real skill, and it does not scale.",
+      blocker: "Every audience is getting an improvised version of the same explanation. There is no core narrative underneath, so each adaptation is a small rewrite.",
+      risk: "A message aimed at everyone gets edited by everyone. Each audience bends it toward their own priorities, and the core claim quietly erodes.",
+      stabilize: "The decision audience. Who needs to understand this work in the next ninety days, and what would move them.",
+      offer: "Institutional Narrative System",
+      offerdesc: "One core narrative with audience-specific versions built on the same claim, so the message adjusts for the room without dissolving in it.",
+      cta: "Ask About a Narrative System",
+      subject: "Institutional Narrative System inquiry (diagnostic result: Audience Fog)"
+    },
+    deadline: {
+      title: "Deadline Mode",
+      qrisk: "Deadline-built narratives read like deadline-built narratives.",
+      qfix: "Lock the claim, the proof, and the ask before production.",
+      plain: "The calendar is running the message",
+      tagline: "The deadline is starting to make strategic decisions.",
+      meaning: "There is a real moment on the calendar, and it is setting the pace. The message is being assembled at the speed of the deadline, not the speed of the thinking.",
+      blocker: "Materials are being built from older documents under pressure. Every hour goes to production. None goes to whether the story is ready to compete.",
+      risk: "Deadline-built narratives read like deadline-built narratives. Reviewers can tell, and they score accordingly.",
+      stabilize: "The narrative core: the claim, the proof, and the ask. Stabilize those three and every document downstream gets faster to produce and harder to argue with.",
+      offer: "Proposal / Funding Narrative Support",
+      offerdesc: "Strategic writing support for proposals, grant narratives, funder meetings, and partnership pitches. Built for real deadlines, including the one currently in charge.",
+      cta: "Start with Opportunity Readiness Support",
+      subject: "Proposal / Funding Narrative Support inquiry (diagnostic result: Deadline Mode)"
+    },
+    handoff: {
+      title: "Handoff Risk",
+      qrisk: "A message that depends on a person is one transition from starting over.",
+      qfix: "Working documentation the next person can actually run.",
+      plain: "The message depends on you being there",
+      tagline: "The work is not the problem. The handoff is.",
+      meaning: "It makes sense live. The issue is what happens after you leave the room.",
+      blocker: "The strongest version of the story lives in one or two people. It has never been fully written down, so everyone new learns it by apprenticeship.",
+      risk: "People leave. Memories drift. A message that depends on a person is one transition away from starting over.",
+      stabilize: "Documentation the next person can actually run. Not a brand book that gets admired once and shelved. Working materials.",
+      offer: "Implementation-Ready Handoff",
+      offerdesc: "The briefs, message guides, and working documents that let the work keep moving without a live explanation attached.",
+      cta: "Build the Handoff with Portfolio Haus",
+      subject: "Implementation-Ready Handoff inquiry (diagnostic result: Handoff Risk)"
+    },
+    ready: {
+      title: "Ready to Travel",
+      qrisk: "Clear messages drift quietly. Nobody announces it.",
+      qfix: "A pressure test before your next big moment.",
+      plain: "The message holds without you",
+      tagline: "The message holds without you. That is what ready looks like.",
+      meaning: "The claim is named, the proof is reachable, and the story does not collapse when you leave the room. That is better shape than most. Ready still needs maintenance.",
+      blocker: "Not much, today. The usual threats to a healthy message are time, growth, and success. All three pull on the language.",
+      risk: "Clear messages drift quietly. One day the deck says one thing, the website says another, and the board says a third.",
+      stabilize: "A pressure test before your next big moment. Point the message at your hardest audience and see what holds.",
+      offer: "Message Audit",
+      offerdesc: "A second set of eyes before the next proposal, launch, or leadership change. A pressure test now costs less than drift later.",
+      cta: "Book the Pressure Test",
+      subject: "Message Audit inquiry (diagnostic result: Ready to Travel)"
+    }
+  };
+
+  var STATES = [
+    [2, "steady", "on-low"],
+    [4, "strained", "on-mid"],
+    [6, "running the show", "on-high"]
+  ];
+
+  var answers = new Array(QUESTIONS.length).fill(null);
+  var current = 0;
+
+  var elIntro = document.getElementById("ctri-intro");
+  var elQuiz = document.getElementById("ctri-quiz");
+  var elResult = document.getElementById("ctri-result");
+  var elQwrap = document.getElementById("ctri-qwrap");
+  var elDim = document.getElementById("ctri-dim");
+  var elQ = document.getElementById("ctri-question");
+  var elNote = document.getElementById("ctri-note");
+  var elOpts = document.getElementById("ctri-options");
+  var elCount = document.getElementById("ctri-count");
+  var elCells = document.getElementById("ctri-cells");
+  var elBack = document.getElementById("ctri-back");
+  var lastResultText = "";
+
+  for (var c = 0; c < QUESTIONS.length; c++) {
+    elCells.appendChild(document.createElement("span"));
+  }
+
+  function renderQuestion() {
+    var item = QUESTIONS[current];
+    elCount.textContent = "Question " + (current + 1) + " of " + QUESTIONS.length;
+    elCells.querySelectorAll("span").forEach(function (cell, i) {
+      cell.className = i < current ? "done" : (i === current ? "now" : "");
+    });
+    elDim.textContent = DIM_READS[item.dim];
+    elQ.textContent = item.q;
+    elNote.textContent = item.note || "";
+    elNote.style.display = item.note ? "" : "none";
+    elOpts.innerHTML = "";
+    item.opts.forEach(function (opt, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "quiz-option" + (answers[current] === i ? " selected" : "");
+      b.textContent = opt[0];
+      b.addEventListener("click", function () { pick(i); });
+      elOpts.appendChild(b);
+    });
+    elBack.hidden = current === 0;
+    elQwrap.classList.remove("q-anim");
+    void elQwrap.offsetWidth;
+    elQwrap.classList.add("q-anim");
+  }
+
+  function pick(i) {
+    answers[current] = i;
+    var buttons = elOpts.querySelectorAll(".quiz-option");
+    buttons.forEach(function (b, j) { b.classList.toggle("selected", j === i); });
+    window.setTimeout(function () {
+      if (current < QUESTIONS.length - 1) {
+        current += 1;
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    }, 220);
+  }
+
+  function scoreDims() {
+    var scores = { headline: 0, receipts: 0, audience: 0, deadline: 0, handoff: 0 };
+    QUESTIONS.forEach(function (item, i) {
+      if (answers[i] !== null) scores[item.dim] += item.opts[answers[i]][1];
+    });
+    return scores;
+  }
+
+  function chooseResult(scores) {
+    var allSteady = DIMS.every(function (d) { return scores[d] <= 2; });
+    if (allSteady) return "ready";
+    if (scores.deadline >= 5) return "deadline";
+    var order = ["headline", "receipts", "audience", "handoff", "deadline"];
+    var best = order[0];
+    order.forEach(function (d) { if (scores[d] > scores[best]) best = d; });
+    return best;
+  }
+
+  function stateFor(score) {
+    for (var i = 0; i < STATES.length; i++) {
+      if (score <= STATES[i][0]) return STATES[i];
+    }
+    return STATES[STATES.length - 1];
+  }
+
+  function renderSignal(scores) {
+    var wrap = document.getElementById("r-signal");
+    wrap.querySelectorAll(".signal-row").forEach(function (n) { n.remove(); });
+    DIMS.forEach(function (d) {
+      var row = document.createElement("div");
+      row.className = "signal-row sig-animate";
+      var idx = DIMS.indexOf(d);
+      row.style.animationDelay = (idx * 0.09).toFixed(2) + "s";
+      var st = stateFor(scores[d]);
+      var ticks = "";
+      for (var i = 1; i <= 6; i++) {
+        ticks += '<span class="' + (i <= scores[d] ? st[2] : "") + '" style="animation-delay:' + (idx * 0.09 + 0.12 + i * 0.05).toFixed(2) + 's"></span>';
+      }
+      row.innerHTML =
+        '<span class="signal-name">' + DIM_LABELS[d] + "</span>" +
+        '<span class="signal-ticks">' + ticks + "</span>" +
+        '<span class="signal-state">' + st[1] + "</span>";
+      wrap.appendChild(row);
+    });
+  }
+
+  function buildResultText(key, scores) {
+    var r = RESULTS[key];
+    var lines = [];
+    lines.push("CAN THEY REPEAT IT?\u2122: A Portfolio Haus Diagnostic");
+    lines.push("portfolio.haus/tools/can-they-repeat-it/");
+    lines.push("");
+    lines.push("DIAGNOSIS: " + r.title);
+    lines.push(r.plain + ".");
+    lines.push("");
+    lines.push("HAUS SIGNAL (0 steady to 6 running the show)");
+    DIMS.forEach(function (d) {
+      lines.push("  " + DIM_LABELS[d] + ": " + scores[d] + " of 6 (" + stateFor(scores[d])[1] + ")");
+    });
+    lines.push("");
+    lines.push("WHAT THIS MEANS");
+    lines.push(r.meaning);
+    lines.push("");
+    lines.push("WHAT IS WORKING");
+    lines.push(document.getElementById("r-working").textContent);
+    lines.push("");
+    lines.push("WHAT IS GETTING IN THE WAY");
+    lines.push(r.blocker);
+    lines.push("");
+    lines.push("THE RISK");
+    lines.push(r.risk);
+    lines.push("");
+    lines.push("STABILIZE THIS FIRST");
+    lines.push(r.stabilize);
+    lines.push("");
+    lines.push("RECOMMENDED PORTFOLIO HAUS NEXT STEP");
+    lines.push(r.offer + ": " + r.offerdesc);
+    lines.push("");
+    lines.push("Contact: " + MAILTO);
+    return lines.join("\n");
+  }
+
+  function showResult() {
+    var scores = scoreDims();
+    var key = chooseResult(scores);
+    var r = RESULTS[key];
+
+    document.getElementById("r-title").textContent = r.title;
+    document.getElementById("r-plain").textContent = r.plain;
+    document.getElementById("r-tagline").textContent = r.tagline;
+    document.getElementById("r-meaning").textContent = r.meaning;
+    document.getElementById("r-blocker").textContent = r.blocker;
+    document.getElementById("r-risk").textContent = r.risk;
+    document.getElementById("r-stabilize").textContent = r.stabilize;
+    document.getElementById("r-offer").textContent = r.offer;
+    document.getElementById("r-offerdesc").textContent = r.offerdesc;
+
+    var working;
+    if (key === "ready") {
+      var weakest = DIMS.reduce(function (a, b) { return scores[b] > scores[a] ? b : a; });
+      working = "Most of it. The headline, the proof, the audience, and the handoff are all holding. Your softest signal is the " + DIM_LABELS[weakest].toLowerCase() + ". Keep an eye on it.";
+    } else {
+      var strongest = DIMS.filter(function (d) { return d !== key; })
+        .reduce(function (a, b) { return scores[b] < scores[a] ? b : a; });
+      working = STRENGTHS[strongest] + " Build on that while you fix the rest.";
+    }
+    document.getElementById("r-working").textContent = working;
+
+    renderSignal(scores);
+
+    var cta = document.getElementById("r-cta");
+    cta.href = "mailto:" + MAILTO + "?subject=" + encodeURIComponent(r.subject);
+    cta.textContent = r.cta;
+
+    document.getElementById("q-title").textContent = r.title;
+    document.getElementById("q-plain").textContent = r.plain + ".";
+    document.getElementById("q-risk").textContent = r.qrisk;
+    document.getElementById("q-fix").textContent = r.qfix;
+    document.getElementById("q-offer").textContent = r.offer;
+    document.getElementById("q-cta").href = cta.href;
+
+    lastResultText = buildResultText(key, scores);
+
+    var emailBody = lastResultText;
+    if (emailBody.length > 1500) emailBody = emailBody.slice(0, 1500) + "\n[Trimmed for email. Full result available via Copy or Download.]";
+    document.getElementById("r-email").href =
+      "mailto:" + MAILTO +
+      "?subject=" + encodeURIComponent("Can They Repeat It result: " + r.title) +
+      "&body=" + encodeURIComponent(emailBody);
+
+    elQuiz.hidden = true;
+    elIntro.hidden = true;
+    elResult.classList.add("active");
+    elResult.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function confirmMsg(msg) {
+    var el = document.getElementById("r-confirm");
+    el.textContent = msg;
+    window.setTimeout(function () { if (el.textContent === msg) el.textContent = ""; }, 3500);
+  }
+
+  document.getElementById("ctri-start").addEventListener("click", function () {
+    elIntro.hidden = true;
+    elQuiz.hidden = false;
+    renderQuestion();
+  });
+
+  elBack.addEventListener("click", function () {
+    if (current > 0) { current -= 1; renderQuestion(); }
+  });
+
+  document.getElementById("ctri-restart").addEventListener("click", function () {
+    answers = new Array(QUESTIONS.length).fill(null);
+    current = 0;
+    elResult.classList.remove("active");
+    elQuiz.hidden = false;
+    renderQuestion();
+    elQuiz.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  document.getElementById("r-copy").addEventListener("click", function () {
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = lastResultText;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand("copy"); confirmMsg("Copied. Paste it wherever the decision happens."); }
+      catch (e) { confirmMsg("Copy did not work in this browser. Use Download instead."); }
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(lastResultText).then(function () {
+        confirmMsg("Copied. Paste it wherever the decision happens.");
+      }, fallback);
+    } else { fallback(); }
+  });
+
+  document.getElementById("r-download").addEventListener("click", function () {
+    var blob = new Blob([lastResultText], { type: "text/plain;charset=utf-8" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "can-they-repeat-it-result.txt";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    confirmMsg("Downloaded. One page, ready for your next meeting.");
+  });
+})();
+</script>
+
+<script>
+(function () {
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce || !("IntersectionObserver" in window)) return;
+  document.documentElement.classList.add("ph-motion");
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("revealed"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+  document.querySelectorAll(".rv").forEach(function (el) { io.observe(el); });
+})();
+</script>
