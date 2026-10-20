@@ -1,16 +1,31 @@
 ---
 layout: default
 title: Page Not Found | Portfolio Haus
+description: Find your way to Portfolio Haus institutional services, founder services, or a useful conversation.
 permalink: /404.html
-description: This page doesn't exist, but the rest of the Haus does.
+noindex: true
+sitemap: false
 ---
 
-<section style="padding-top:170px;padding-bottom:130px;text-align:center;">
-  <div class="container">
-    <p class="eyebrow" style="color:var(--coral);">404</p>
-    <h2>This room doesn&rsquo;t exist yet.</h2>
-    <div class="haus-lines center"><span></span><span></span></div>
-    <p style="max-width:480px;margin:0 auto 32px;">Either the link is broken, or you found a part of the Haus that hasn&rsquo;t been built. Either way, let&rsquo;s get you back to one that has.</p>
-    <a class="btn btn-gold" href="{{ '/' | relative_url }}">Back to the Front Door</a>
-  </div>
+<section class="page-header">
+<div class="container">
+<p class="eyebrow">404</p>
+<h1>This page isn’t here. The work is.</h1>
+<div class="haus-lines" aria-hidden="true">
+<span>
+</span>
+<span>
+</span>
+</div>
+</div>
+</section>
+<section>
+<div class="container">
+<p>The address may have changed. Find the right pathway below, or tell us what you were looking for.</p>
+<div class="cta-row">
+<a class="btn btn-gold" href="{{ '/institutions/' | relative_url }}">Institutions</a>
+<a class="btn btn-outline-navy" href="{{ '/founders/' | relative_url }}">Founders</a>
+<a class="btn btn-outline-navy" href="{{ '/start/' | relative_url }}">Start</a>
+</div>
+</div>
 </section>
