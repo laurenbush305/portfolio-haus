@@ -1,6 +1,6 @@
-/* The Haus Signal: the Portfolio Haus guided intake assistant.
+/* The Haus Signal: the Portfolio Haus guided project router.
    Rule-based, fully static: no backend, no API, no keys, no cost. Works on
-   GitHub Pages as uploaded. See HAUS-SIGNAL-SETUP.md.
+   GitHub Pages as uploaded. See docs/INTAKE-SETUP.md.
    Removal: delete this file, assets/css/haus-signal.css, _includes/haus-signal.html,
    the signal hooks in _layouts/default.html, and signal: true in page front matter. */
 
@@ -23,76 +23,30 @@
   var root = document.getElementById("haus-signal-root");
   if (!root) return;
 
-  var CONTACT_URL = document.body.getAttribute("data-contact-url") ||
-    (document.getElementById("contact") ? "#contact" :
-      (window.location.pathname.indexOf("/contact") === 0 ? "#top" : "/contact/"));
+  var CONTACT_URL = document.body.dataset.contactUrl;
 
   var GREETING = "Hi, I\u2019m the Haus Signal. Tell me what you\u2019re trying to clarify, explain, fund, launch, or strengthen, and I\u2019ll route you to the right Portfolio Haus next step.";
-  var UNSURE = "I don\u2019t want to overstate that. The best next step is to send a project inquiry so Portfolio Haus can review the details.";
-  var PRICING = "Pricing depends on scope, timeline, and the level of strategic support the work needs. The best next step is to send a project inquiry so Portfolio Haus can review the project and recommend the right path.";
+  var UNSURE = "Tell Portfolio Haus what you are working on, who needs to understand it, and what needs to become clearer.";
+  var PRICING = "Pricing depends on scope, timeline, and the level of strategic support the work needs. Share your starting point and deadline in an inquiry.";
 
   var LANES = {
-    unclear: {
-      label: "Our message is unclear",
-      questions: [
-        { q: "Who do you most need to reach right now?",
-          opts: ["Funders", "Partners or clients", "Board or internal", "The public"] },
-        { q: "Where does the messaging need to show up first?",
-          opts: ["The website", "A deck or proposal", "Conversations and pitches", "Everywhere, honestly"] }
-      ],
-      rec: {
-        service: "Message Audit",
-        text: "Start with a Message Audit: a focused review that names what is unclear, underbuilt, or missing. If the work runs deeper, it becomes a Doctrine Build\u2122 Sprint: Diagnose, Design, Deliver."
-      }
-    },
-    funding: {
-      label: "Proposal, grant, or funding help",
-      questions: [
-        { q: "Is there a live deadline?",
-          opts: ["Yes, within a month", "Yes, further out", "Not yet"] },
-        { q: "Where does the proposal stand?",
-          opts: ["Draft exists, needs strengthening", "Partial pieces", "Starting from zero"] }
-      ],
-      rec: {
-        service: "Proposal / Funding Narrative Support",
-        text: "This is scoped for exactly that: strategic narrative support for proposals, grants, and funder conversations. Include the funder and the deadline in your inquiry and Portfolio Haus can respond with timing in mind."
-      }
-    },
-    website: {
-      label: "Our website does not explain the work",
-      questions: [
-        { q: "What should the website help visitors do?",
-          opts: ["Understand what we do", "Trust us enough to reach out", "Fund or partner with us"] }
-      ],
-      rec: {
-        service: "Website Narrative and Positioning",
-        text: "The fix is usually narrative, not design: what the site claims, in what order, with what proof. That is what Website Narrative and Positioning rebuilds."
-      }
-    },
-    exec: {
-      label: "Clearer public language as a founder or executive",
-      questions: [
-        { q: "What is the upcoming moment?",
-          opts: ["A launch or announcement", "Fundraising or investors", "Media or public speaking", "General presence"] }
-      ],
-      rec: {
-        service: "Executive Communications Strategy",
-        text: "Executive Communications Strategy builds the language for the moment that is coming: the claim, the proof, and the version of the story you can say in any room."
-      }
-    },
-    ai: {
-      label: "AI messaging or AI literacy",
-      questions: [],
-      rec: {
-        service: "Message Audit",
-        text: "Portfolio Haus helps mission-driven organizations communicate clearly and responsibly about AI, especially where public trust, institutional accountability, workforce communication, public health, equity, or audience education are involved. A Message Audit or a communications strategy conversation is the right starting point."
-      }
-    }
+    institutions: { label: "Institutional communications", questions: [
+      { q: "What needs to become clearer?", opts: ["Research or evidence", "Stakeholder direction", "Messaging or a website brief", "A transition or handoff"] }
+    ], path: "institutions", diagnosis: "Missing Headline" },
+    founders: { label: "Founder messaging", questions: [
+      { q: "What has the business outgrown?", opts: ["The core explanation", "The website language", "How other people introduce it"] }
+    ], path: "founders", diagnosis: "Missing Headline" },
+    funding: { label: "A proposal, funding, or opportunity deadline", questions: [
+      { q: "Where does the work stand?", opts: ["A draft needs strengthening", "There are partial pieces", "We are starting from the beginning"] }
+    ], path: "opportunity", diagnosis: "Deadline Mode" },
+    proof: { label: "Proof that needs to travel", questions: [
+      { q: "Who is the proof for?", opts: ["An expert-led business / founder", "An institution or organization", "Not sure yet"] }
+    ], path: "unsure", diagnosis: "Receipt Gap" },
+    unsure: { label: "Not sure where to begin", questions: [], path: "unsure", diagnosis: "" }
   };
+  var LANE_ORDER = ["institutions", "founders", "funding", "proof", "unsure"];
 
-  var LANE_ORDER = ["unclear", "funding", "website", "exec", "ai"];
-
-  var state = { lane: null, step: 0, open: false, history: [] };
+  var state = { lane: null, step: 0, open: false, history: [], audience: null };
 
   /* ---------- DOM ---------- */
 
@@ -110,10 +64,10 @@
   panel.innerHTML =
     '<div class="hs-head">' +
       '<div><p class="hs-title">The Haus Signal</p>' +
-      '<p class="hs-sub">Routing your project to the right next step</p></div>' +
+      '<p class="hs-sub">Find a starting point. Your messages stay here.</p></div>' +
       '<button class="hs-close" type="button" aria-label="Close the Haus Signal">&times;</button>' +
     '</div>' +
-    '<div class="hs-body"></div>' +
+    '<div class="hs-body" role="log" aria-label="Routing conversation" aria-live="polite" aria-relevant="additions"></div>' +
     '<div class="hs-foot">' +
       '<label class="sr-only" for="hs-input" style="position:absolute;left:-9999px;">Type your message</label>' +
       '<input class="hs-input" id="hs-input" type="text" maxlength="500" placeholder="Or type it in your own words" autocomplete="off">' +
@@ -170,7 +124,7 @@
   function recommend(rec, extra) {
     clearOptions();
     var card = el("div", "hs-rec");
-    var cta = CONTACT_URL;
+    var cta = rec.url || CONTACT_URL;
     card.innerHTML =
       '<span class="hs-rec-label">Best Next Step</span>' +
       '<p class="hs-rec-service"></p><p class="hs-rec-text"></p>' +
@@ -197,7 +151,7 @@
 
   function laneMenu() {
     var labels = LANE_ORDER.map(function (k) { return LANES[k].label; });
-    labels.push("Something else");
+
     options(labels, function (label) {
       userSay(label);
       var key = LANE_ORDER.filter(function (k) { return LANES[k].label === label; })[0];
@@ -207,7 +161,7 @@
   }
 
   function startLane(key) {
-    state.lane = key; state.step = 0;
+    state.lane = key; state.step = 0; state.audience = null;
     nextStep();
   }
 
@@ -218,16 +172,19 @@
       say(item.q);
       options(item.opts, function (choice) {
         userSay(choice);
+        if (choice === "An expert-led business / founder") state.audience = "founders";
+        if (choice === "An institution or organization") state.audience = "institutions";
         state.step += 1;
         nextStep();
       });
     } else {
-      recommend(lane.rec);
+      var rec = window.PortfolioHausRoute(state.audience || lane.path, lane.diagnosis);
+      recommend({ service: rec.offer, text: rec.offerdesc, url: rec.url });
     }
   }
 
   function restart() {
-    state.lane = null; state.step = 0;
+    state.lane = null; state.step = 0; state.audience = null;
     body.innerHTML = "";
     state.history = [];
     begin();
@@ -244,21 +201,21 @@
       say(PRICING); recommendContactOnly(); return;
     }
     if (has(["guarantee", "guaranteed", "promise you", "will we get", "success rate"])) {
-      say("Portfolio Haus does not guarantee outcomes like funding decisions, coverage, or approvals. What it builds is the clearest, best-evidenced version of your story.\n" + UNSURE);
+      say("Funding decisions and approvals depend on the reviewing organization. Portfolio Haus helps you make a clear, well-supported case.\n" + UNSURE);
       recommendContactOnly(); return;
     }
     if (has(["grant", "proposal", "rfp", "funder", "funding", "deadline"])) { startLane("funding"); return; }
-    if (has(["website", "web site", "homepage", "landing page", "site "])) { startLane("website"); return; }
-    if (has([" ai ", "artificial intelligence", "ai literacy", "ai messaging"])) { startLane("ai"); return; }
-    if (has(["founder", "executive", "keynote", "investor", "board meeting", "speaking", "thought"])) { startLane("exec"); return; }
-    if (has(["unclear", "messag", "clarity", "explain", "positioning", "story", "narrative", "pitch", "deck", "confus"])) { startLane("unclear"); return; }
+    if (has(["proof", "receipt", "credibility", "case stud", "testimonial"])) { startLane("proof"); return; }
+    if (has(["founder", "my business", "entrepreneur"])) { startLane("founders"); return; }
+    if (has(["institution", "organization", "association", "nonprofit", "public health", "research", "stakeholder", " ai ", "artificial intelligence"])) { startLane("institutions"); return; }
+    if (has(["website", "messag", "clarity", "explain", "positioning", "narrative", "handoff"])) { say("Is this institutional work or an expert-led business? Choose the closest starting point."); laneMenu(); return; }
     if (has(["hi ", "hello", "hey "])) { say(GREETING); laneMenu(); return; }
     say(UNSURE);
     recommendContactOnly();
   }
 
   function recommendContactOnly() {
-    recommend({ service: "Send a Project Inquiry", text: "Share what you are working on and where the message needs to hold. Portfolio Haus reviews every inquiry and recommends the right path, or says so honestly if it is not the right fit." });
+    recommend({ service: "Send a Project Inquiry", text: "Share the work, the audience, and the decision ahead. Portfolio Haus will recommend where to begin." });
   }
 
   /* ---------- Events ---------- */

@@ -1,48 +1,46 @@
-# Portfolio Haus Website — V1 (Launch)
+# Portfolio Haus
 
-This is the full source for the Portfolio Haus site. It's built as a Jekyll site, but **you do not need to install Ruby or anything else on your computer.** GitHub Pages builds Jekyll sites automatically on its own servers the moment you upload files. Your job is just to get the files into a GitHub repository.
+Jekyll / GitHub Pages website for https://portfolio.haus. Production branch: `main`.
 
-**Start with `LAUNCH-CHECKLIST.md`** in this same folder for the short, linear version of everything below.
+## Current architecture
 
-## Before you publish
+Primary navigation: Home, Institutions, Founders, Work, About, Start.
 
-Open `index.html` and replace these placeholders. Each one is marked with an HTML comment (`<!-- TODO before launch... -->`) directly above it, in the Contact section, so search for "TODO" to find both fast.
+Method, the Receipt Rule, and Tools stay in the footer. `/contact/` is a noindex compatibility page with a canonical to `/start/`; `/ways-to-work/` remains a useful noindex pathway chooser. `/government/`, `/insights/`, and `/resources/` are noindex signposts, excluded from the sitemap. Working instruments are noindex and excluded from the sitemap; this does **not** provide authentication or privacy.
 
-1. `hello@example.com` → your real email
-2. `https://www.linkedin.com/` → your real LinkedIn profile URL
+The founder sequence is Founder Message Audit → Name the Headline™ Sprint → Receipts That Travel™. Doctrine Build™ is the Diagnose / Design / Deliver methodology. No pricing is published.
 
-`example.com` is a placeholder on purpose. It isn't a real domain, so the site can't quietly point to a wrong or fake address if you forget to swap it before publishing.
+## Local build
 
-## Publishing with no command line
+Use a supported Ruby (3.3 recommended) and Bundler:
 
-1. Go to [github.com](https://github.com) and create a free account if you don't already have one.
-2. Click the **+** in the top right corner → **New repository**.
-   - Name it `portfolio-haus-website` (or anything you like).
-   - Set it to **Public** (GitHub Pages requires this on a free account).
-   - Don't add a README, .gitignore, or license — leave it empty.
-3. On the new repo's page, click **uploading an existing file**.
-4. Drag in every file and folder from this project and commit them. That's `_config.yml`, `_includes`, `_layouts`, `assets` (including the headshot at `assets/images/lauren-bush-headshot.jpg`), `index.html`, `404.html`, `README.md`, `LAUNCH-CHECKLIST.md`, the now-live `about`, `ways-to-work`, `method`, `receipts`, and `contact` folders, and the still-dormant `insights`, `resources`, `founders`, and `government` folders.
-   - GitHub's drag-and-drop upload preserves folder structure, so you can drop the whole unzipped project folder in at once.
-   - `404.html` must stay at the root (not inside a folder) for GitHub Pages to serve it automatically on any broken link.
-5. Go to the repo's **Settings** tab → **Pages** in the left sidebar.
-6. Under "Build and deployment," set **Source** to "Deploy from a branch," branch `main`, folder `/ (root)`. Save.
-7. Wait one to two minutes. GitHub will show you a live URL like `https://yourusername.github.io/portfolio-haus-website/`. That's your site.
+```sh
+bundle install
+bundle exec jekyll build --strict_front_matter
+python3 scripts/check-site.py _site
+bundle exec jekyll serve
+```
 
-## Connecting a custom domain later (Porkbun)
+`jekyll-sitemap` is supported by GitHub Pages and produces `/sitemap.xml`. `_config.yml` sets the custom-domain URL and excludes documentation, scripts, and tests from public output. The `CNAME` remains `portfolio.haus`.
 
-1. Buy the domain on Porkbun (portfoliohaus.co, portfolio.haus, or portfoliohaus.studio per the brief).
-2. In the GitHub repo → Settings → Pages → "Custom domain," enter your domain and save. GitHub will create a `CNAME` file in your repo automatically.
-3. In Porkbun's DNS settings for that domain, add the records GitHub shows you on that same Pages settings screen.
-4. DNS changes can take anywhere from a few minutes to a few hours to take effect.
+Optional browser regression checks require Playwright and Chrome/Chromium. They do not participate in the production build:
 
-## A note on what's NOT in this package
+```sh
+PH_BASE_URL=http://127.0.0.1:4000 node tests/browser.cjs
+```
 
-The private roadmap doc is deliberately not included here, even though it was requested as `roadmap.md` inside the launch zip. That file's own header says "not part of the public site, not for client or prospect distribution," and this repository will be public the moment it's on GitHub Pages (a requirement of the free tier). Bundling internal strategy notes, naming deliberations, and future positioning thinking into a public repo would contradict the reason that file exists. It's still being delivered, just as a separate file outside this package, the way it has been all along.
+Set `PH_BROWSER_EXECUTABLE` when using a system Chrome. Set `PH_SCREENSHOT_DIR` to save screenshots. No JavaScript framework, client bundler, or production Node dependency is used.
 
-## Site structure as of this version
+## Intake
 
-Portfolio Haus is now a real multi-page site, not a single-page scroll. Live, linked-in-nav pages: `/` (home), `/about/`, `/ways-to-work/`, `/method/`, `/receipts/`, `/contact/`. The homepage keeps short "snapshot" versions of each, with pathway links to the full page, so nothing on the homepage duplicates the deeper pages, it previews them.
+The default intake prepares a selectable, editable inquiry with copy, download, and email draft actions. It sends nothing automatically and stores no answers across reloads. Email and LinkedIn remain available, including without JavaScript.
 
-Still dormant, not in nav: `insights/`, `resources/`, `founders/`, `government/`. Each links back to the homepage and is marked "Coming Later."
+Direct submission is optional. See [the setup guide](docs/INTAKE-SETUP.md) for the exact Formspree connection and acceptance check. No API key belongs in this repository.
 
-A possible future "Lauren Bush" personal hub (connecting Portfolio Haus, Rally Off Court, and other projects) is intentionally not part of this folder structure. If it happens, it's a separate site on its own domain, not a Portfolio Haus subpage.
+## Brand and evidence
+
+Google Fonts supplies Inter and Libre Baskerville with `display=swap` and fallback fonts. Wordmark and display headings use Libre Baskerville Bold; signature moments use its italic. The fixed palette is navy, gold, and cream with neutral text tones. The Haus Lines have a 3px gap and a lighter second rule.
+
+Work cases are explicitly Lauren Bush’s prior professional experience, with Hatcher, Martin Investment Group / Black Women Invest, and APLU credited. No source résumés, sensitive client work, confidential artifacts, or private proposal materials are included. See [the editorial record](docs/EDITORIAL-NOTES.md).
+
+See [the launch checklist](LAUNCH-CHECKLIST.md) for remaining release actions.

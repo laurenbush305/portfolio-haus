@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Can They Repeat It?&trade; | Portfolio Haus
+title: Can They Repeat It?™ | Portfolio Haus
 description: A Portfolio Haus diagnostic for work that keeps getting re-explained. Ten questions. One sharper read on where the message is breaking.
 extra_css:
   - /assets/css/tools.css
@@ -11,7 +11,7 @@ extra_css:
 <section class="tool-hero">
   <div class="container">
     <p class="eyebrow">Portfolio Haus Tools</p>
-    <h1>Can They Repeat It?&trade;</h1>
+    <h1>Can They <span class="nowrap">Repeat It?&trade;</span></h1>
     <div class="haus-lines"><span></span><span></span></div>
     <p class="tool-sub">Before you rewrite the deck, check the handoff.</p>
     <p class="tool-promise">If your work only makes sense when you are in the room explaining it, the message is not ready to travel yet.</p>
@@ -35,6 +35,8 @@ extra_css:
           <li class="lg-high">Running the show</li>
         </ul>
         <div class="meta-row"><span>Free</span><span>About 3 minutes</span><span>No signup</span><span>Nothing leaves this page unless you send it</span></div>
+        <div class="field"><label for="ctri-path">What are you answering for?</label><select id="ctri-path"><option value="institutions">An institution, organization, or program</option><option value="founders">An expert-led business / founder</option><option value="opportunity">A live proposal or funding opportunity</option><option value="unsure">Not sure yet</option></select></div>
+        <noscript><p>The diagnostic requires JavaScript. You can still <a href="{{ '/start/' | relative_url }}">start an inquiry</a>.</p></noscript>
         <button class="btn btn-gold" id="ctri-start" type="button">Run the Diagnostic</button>
       </div>
 
@@ -69,33 +71,33 @@ extra_css:
           </div>
 
           <div class="result-section first rv">
-            <h4>What This Means</h4>
+            <h3>What This Means</h3>
             <p id="r-meaning" class="result-lead"></p>
           </div>
 
           <div class="result-grid rv">
             <div class="result-section">
-              <h4>What Is Working</h4>
+              <h3>What Is Working</h3>
               <p id="r-working"></p>
             </div>
             <div class="result-section">
-              <h4>What Is Getting in the Way</h4>
+              <h3>What Is Getting in the Way</h3>
               <p id="r-blocker"></p>
             </div>
           </div>
 
           <div class="result-section risk rv">
-            <h4>The Risk</h4>
+            <h3>The Risk</h3>
             <p id="r-risk"></p>
           </div>
 
           <div class="stabilize-callout rv">
-            <h4>Stabilize This First</h4>
+            <h3>Stabilize This First</h3>
             <p id="r-stabilize"></p>
           </div>
 
           <div class="result-next rv">
-            <h4>Recommended Portfolio Haus Next Step</h4>
+            <h3>Recommended Portfolio Haus Next Step</h3>
             <p class="offer-name" id="r-offer"></p>
             <p id="r-offerdesc"></p>
             <a class="btn btn-gold" id="r-cta" href="#">Start the Conversation</a>
@@ -119,7 +121,7 @@ extra_css:
             <button class="btn-tool" id="r-copy" type="button">Copy Result</button>
             <button class="btn-tool" id="r-download" type="button">Download as .txt</button>
           </div>
-          <p class="action-confirm" id="r-confirm"></p>
+          <p class="action-confirm" id="r-confirm" role="status"></p>
 
           <div class="tool-restart">
             <button type="button" id="ctri-restart">Run it again for different work &rarr;</button>
@@ -127,7 +129,7 @@ extra_css:
         </div>
       </div>
 
-      <p class="tool-footnote">Diagnosis is free. The rebuild is the engagement.</p>
+      <p class="tool-footnote">The diagnostic is free. The next step follows what it finds.</p>
     </div>
   </div>
 </section>
@@ -244,12 +246,8 @@ extra_css:
       tagline: "The work is real. The one sentence that carries it is not, yet.",
       meaning: "The explanation is doing the headline's job. Every conversation starts from scratch because there is no single named claim for people to pick up and carry.",
       blocker: "Everyone close to the work describes it from their own seat. All the versions are true. None of them match.",
-      risk: "Decision-makers do not repeat paragraphs. If the headline is missing, they will write their own. You may not like their draft.",
-      stabilize: "One sentence. What this work does, for whom, and why anyone should believe it. Not the mission statement. The headline.",
-      offer: "Message Audit",
-      offerdesc: "A focused review that names what is unclear, underbuilt, or missing, and hands you the strongest version of your own claim. Most engagements start here.",
-      cta: "Start with a Message Audit",
-      subject: "Message Audit inquiry (diagnostic result: Missing Headline)"
+      risk: "Decision-makers need a clear claim to carry forward. Without it, they may leave with a different understanding of the work.",
+      stabilize: "One sentence. What this work does, for whom, and why anyone should believe it. Not the mission statement. The headline."
     },
     receipts: {
       title: "Receipt Gap",
@@ -258,13 +256,9 @@ extra_css:
       plain: "The claim is fine. The proof is scattered",
       tagline: "Your proof may be sitting in a folder minding its business.",
       meaning: "The message says something worth believing. The evidence behind it is scattered, informal, or unassembled, so every request for proof becomes a scavenger hunt.",
-      blocker: "Outcomes and testimonials exist, but they have never been put in language that can sit next to the claim. Proof assembled on request is proof that arrives late.",
+      blocker: "Outcomes and testimonials exist, but they have never been put in language that can sit next to the claim. Proof assembled on request can arrive after the decision has moved on.",
       risk: "Unproven claims get discounted, even the true ones. Funders and decision-makers do not extend credit to messaging.",
-      stabilize: "An evidence inventory. What you can prove today, in what form, and which claims are currently traveling without receipts.",
-      offer: "Doctrine Build\u2122 Sprint",
-      offerdesc: "A structured Diagnose, Design, Deliver engagement that clarifies what you stand for and pairs every claim with the evidence behind it, in language built to travel.",
-      cta: "Bring This Into a Doctrine Build\u2122 Sprint",
-      subject: "Doctrine Build Sprint inquiry (diagnostic result: Receipt Gap)"
+      stabilize: "An evidence inventory. What you can prove today, in what form, and which claims are currently traveling without receipts."
     },
     audience: {
       title: "Audience Fog",
@@ -275,11 +269,7 @@ extra_css:
       meaning: "The work is clear to you. Who it needs to convince right now is not, so the message gets adjusted live for every room. That takes real skill, and it does not scale.",
       blocker: "Every audience is getting an improvised version of the same explanation. There is no core narrative underneath, so each adaptation is a small rewrite.",
       risk: "A message aimed at everyone gets edited by everyone. Each audience bends it toward their own priorities, and the core claim quietly erodes.",
-      stabilize: "The decision audience. Who needs to understand this work in the next ninety days, and what would move them.",
-      offer: "Institutional Narrative System",
-      offerdesc: "One core narrative with audience-specific versions built on the same claim, so the message adjusts for the room without dissolving in it.",
-      cta: "Ask About a Narrative System",
-      subject: "Institutional Narrative System inquiry (diagnostic result: Audience Fog)"
+      stabilize: "The decision audience. Who needs to understand this work in the next ninety days, and what would move them."
     },
     deadline: {
       title: "Deadline Mode",
@@ -289,12 +279,8 @@ extra_css:
       tagline: "The deadline is starting to make strategic decisions.",
       meaning: "There is a real moment on the calendar, and it is setting the pace. The message is being assembled at the speed of the deadline, not the speed of the thinking.",
       blocker: "Materials are being built from older documents under pressure. Every hour goes to production. None goes to whether the story is ready to compete.",
-      risk: "Deadline-built narratives read like deadline-built narratives. Reviewers can tell, and they score accordingly.",
-      stabilize: "The narrative core: the claim, the proof, and the ask. Stabilize those three and every document downstream gets faster to produce and harder to argue with.",
-      offer: "Proposal / Funding Narrative Support",
-      offerdesc: "Strategic writing support for proposals, grant narratives, funder meetings, and partnership pitches. Built for real deadlines, including the one currently in charge.",
-      cta: "Start with Opportunity Readiness Support",
-      subject: "Proposal / Funding Narrative Support inquiry (diagnostic result: Deadline Mode)"
+      risk: "When the calendar drives every decision, the evidence and the ask can become hard to follow. Leave room to review the core argument.",
+      stabilize: "The narrative core: the claim, the proof, and the ask. Stabilize those three and every document downstream gets faster to produce and harder to argue with."
     },
     handoff: {
       title: "Handoff Risk",
@@ -305,11 +291,7 @@ extra_css:
       meaning: "It makes sense live. The issue is what happens after you leave the room.",
       blocker: "The strongest version of the story lives in one or two people. It has never been fully written down, so everyone new learns it by apprenticeship.",
       risk: "People leave. Memories drift. A message that depends on a person is one transition away from starting over.",
-      stabilize: "Documentation the next person can actually run. Not a brand book that gets admired once and shelved. Working materials.",
-      offer: "Implementation-Ready Handoff",
-      offerdesc: "The briefs, message guides, and working documents that let the work keep moving without a live explanation attached.",
-      cta: "Build the Handoff with Portfolio Haus",
-      subject: "Implementation-Ready Handoff inquiry (diagnostic result: Handoff Risk)"
+      stabilize: "Documentation the next person can actually run. Not a brand book that gets admired once and shelved. Working materials."
     },
     ready: {
       title: "Ready to Travel",
@@ -320,11 +302,7 @@ extra_css:
       meaning: "The claim is named, the proof is reachable, and the story does not collapse when you leave the room. That is better shape than most. Ready still needs maintenance.",
       blocker: "Not much, today. The usual threats to a healthy message are time, growth, and success. All three pull on the language.",
       risk: "Clear messages drift quietly. One day the deck says one thing, the website says another, and the board says a third.",
-      stabilize: "A pressure test before your next big moment. Point the message at your hardest audience and see what holds.",
-      offer: "Message Audit",
-      offerdesc: "A second set of eyes before the next proposal, launch, or leadership change. A pressure test now costs less than drift later.",
-      cta: "Book the Pressure Test",
-      subject: "Message Audit inquiry (diagnostic result: Ready to Travel)"
+      stabilize: "A pressure test before your next big moment. Point the message at your hardest audience and see what holds."
     }
   };
 
@@ -336,6 +314,7 @@ extra_css:
 
   var answers = new Array(QUESTIONS.length).fill(null);
   var current = 0;
+  var advancing = false;
 
   var elIntro = document.getElementById("ctri-intro");
   var elQuiz = document.getElementById("ctri-quiz");
@@ -377,13 +356,21 @@ extra_css:
     elQwrap.classList.remove("q-anim");
     void elQwrap.offsetWidth;
     elQwrap.classList.add("q-anim");
+    elQ.setAttribute("tabindex", "-1");
+    elQ.focus({ preventScroll: true });
   }
 
   function pick(i) {
+    if (advancing) return;
+    advancing = true;
+    elOpts.querySelectorAll("button").forEach(function(b){ b.disabled = true; });
+    elBack.disabled = true;
     answers[current] = i;
     var buttons = elOpts.querySelectorAll(".quiz-option");
     buttons.forEach(function (b, j) { b.classList.toggle("selected", j === i); });
     window.setTimeout(function () {
+      advancing = false;
+      elBack.disabled = false;
       if (current < QUESTIONS.length - 1) {
         current += 1;
         renderQuestion();
@@ -440,7 +427,7 @@ extra_css:
   }
 
   function buildResultText(key, scores) {
-    var r = RESULTS[key];
+    var r = Object.assign({}, RESULTS[key], window.PortfolioHausRoute(document.getElementById("ctri-path").value, RESULTS[key].title));
     var lines = [];
     lines.push("CAN THEY REPEAT IT?\u2122: A Portfolio Haus Diagnostic");
     lines.push("portfolio.haus/tools/can-they-repeat-it/");
@@ -478,7 +465,7 @@ extra_css:
   function showResult() {
     var scores = scoreDims();
     var key = chooseResult(scores);
-    var r = RESULTS[key];
+    var r = Object.assign({}, RESULTS[key], window.PortfolioHausRoute(document.getElementById("ctri-path").value, RESULTS[key].title));
 
     document.getElementById("r-title").textContent = r.title;
     document.getElementById("r-plain").textContent = r.plain;
@@ -504,7 +491,7 @@ extra_css:
     renderSignal(scores);
 
     var cta = document.getElementById("r-cta");
-    cta.href = "mailto:" + MAILTO + "?subject=" + encodeURIComponent(r.subject);
+    cta.href = r.url;
     cta.textContent = r.cta;
 
     document.getElementById("q-title").textContent = r.title;
@@ -526,7 +513,9 @@ extra_css:
     elQuiz.hidden = true;
     elIntro.hidden = true;
     elResult.classList.add("active");
-    elResult.scrollIntoView({ behavior: "smooth", block: "start" });
+    elResult.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+    document.getElementById("r-title").setAttribute("tabindex", "-1");
+    document.getElementById("r-title").focus({ preventScroll: true });
   }
 
   function confirmMsg(msg) {
@@ -551,7 +540,7 @@ extra_css:
     elResult.classList.remove("active");
     elQuiz.hidden = false;
     renderQuestion();
-    elQuiz.scrollIntoView({ behavior: "smooth", block: "start" });
+    elQuiz.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
   });
 
   document.getElementById("r-copy").addEventListener("click", function () {
@@ -562,7 +551,7 @@ extra_css:
       ta.style.opacity = "0";
       document.body.appendChild(ta);
       ta.select();
-      try { document.execCommand("copy"); confirmMsg("Copied. Paste it wherever the decision happens."); }
+      try { if (!document.execCommand("copy")) throw new Error("Copy unavailable"); confirmMsg("Copied. Paste it wherever the decision happens."); }
       catch (e) { confirmMsg("Copy did not work in this browser. Use Download instead."); }
       document.body.removeChild(ta);
     }
