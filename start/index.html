@@ -1,0 +1,141 @@
+---
+layout: default
+title: Start an Inquiry | Portfolio Haus
+description: Tell Portfolio Haus what you are working on, who needs to understand it, and what needs to become clearer. Start an institutional or founder inquiry.
+---
+<section class="page-header">
+<div class="container">
+<p class="eyebrow">Start</p>
+<h1>Bring the work as it is.</h1>
+<div class="haus-lines" aria-hidden="true">
+<span>
+</span>
+<span>
+</span>
+</div>
+<p class="lede">A few useful questions to help us find where the work should begin. You do not need a finished scope or a perfect explanation.</p>
+</div>
+</section>
+<section>
+<div class="container intake-layout">
+<div>
+<p id="intake-mode" class="form-note">{% if site.intake_endpoint != '' %}Send your inquiry securely through Formspree. Please keep confidential or sensitive information out of this first note.{% else %}This page prepares your inquiry on your device. Review it, then copy it into an email or download it. Nothing is sent automatically.{% endif %}</p>
+<noscript>
+<p>You can <a href="mailto:{{ site.email }}">email {{ site.email }}</a> with your project, audience, current materials, and deadline.{% if site.intake_endpoint == '' %} The inquiry builder requires JavaScript.{% endif %}</p>
+</noscript>
+<form id="intake-form" class="intake-form" {% if site.intake_endpoint != '' %}action="{{ site.intake_endpoint | escape }}" method="post" data-handler="connected"{% else %}data-handler="local"{% endif %} aria-describedby="intake-mode">
+<div class="form-grid">
+<div class="field">
+<label for="name">Your name <small>(required)</small>
+</label>
+<input id="name" name="name" autocomplete="name" maxlength="120" required>
+</div>
+<div class="field">
+<label for="organization">Organization / business <small>(required)</small>
+</label>
+<input id="organization" name="organization" autocomplete="organization" maxlength="160" required>
+</div>
+</div>
+<div class="field">
+<label for="email">Email <small>(required)</small>
+</label>
+<input id="email" name="email" type="email" autocomplete="email" maxlength="200" required>
+</div>
+<div class="field">
+<label for="path">Are you reaching out for? <small>(required)</small>
+</label>
+<select id="path" name="path" required>
+<option value="">Choose the closest fit</option>
+<option value="institutions">Institutional work</option>
+<option value="founders">Founder work</option>
+<option value="opportunity">Proposal / funding / opportunity support</option>
+<option value="unsure">Not sure yet</option>
+</select>
+</div>
+<div class="field">
+<label for="project">What are you working on? <small>(required)</small>
+</label>
+<textarea id="project" name="project" maxlength="3000" required>
+</textarea>
+</div>
+<div class="field">
+<label for="audience">Who needs to understand it? <small>(required)</small>
+</label>
+<textarea id="audience" name="audience" maxlength="1500" required>
+</textarea>
+</div>
+<div class="field">
+<label for="unclear">What feels unclear or unfinished? <small>(required)</small>
+</label>
+<textarea id="unclear" name="unclear" maxlength="2000" required>
+</textarea>
+</div>
+<div class="field">
+<label for="deadline">Is there a deadline or decision date? <small>(optional)</small>
+</label>
+<input id="deadline" name="deadline" maxlength="200" placeholder="A date, a decision window, or not yet set">
+</div>
+<div class="field">
+<label for="materials">What materials already exist? <small>(optional)</small>
+</label>
+<textarea id="materials" name="materials" maxlength="2000" placeholder="A website, deck, research, draft proposal, or notes. A description is enough.">
+</textarea>
+</div>
+<div class="field">
+<label for="support">What kind of support do you think you need? <small>(required)</small>
+</label>
+<select id="support" name="support" required>
+<option value="">Choose the closest fit</option>
+<option>Strategy</option>
+<option>Hands-on refinement / production</option>
+<option>Both</option>
+<option>Not sure</option>
+</select>
+</div>
+<div class="field">
+<label for="budget">Is there a budget range to work within? <small>(optional)</small>
+</label>
+<input id="budget" name="budget" maxlength="160" placeholder="A range or still being determined">
+</div>
+<input type="hidden" name="offer" id="offer">
+<input type="hidden" name="diagnosis" id="diagnosis">
+<input type="hidden" name="_subject" value="Portfolio Haus website inquiry">
+<div hidden aria-hidden="true">
+<label for="website-trap">Leave this blank</label>
+<input id="website-trap" name="_gotcha" tabindex="-1" autocomplete="off">
+</div>
+<button class="btn btn-gold" id="intake-submit" type="submit"{% if site.intake_endpoint == '' %} disabled{% endif %}>{% if site.intake_endpoint != '' %}Send Inquiry{% else %}Prepare My Inquiry{% endif %}</button>
+<p class="form-note">{% if site.intake_endpoint != '' %}Formspree processes the information you submit and delivers it to Portfolio Haus. See <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener">Formspree’s privacy policy</a>.{% else %}Your answers stay in this page until you choose to send them. They are not saved if you close or reload the page.{% endif %}</p>
+</form>
+<div class="inquiry-review" id="inquiry-review" hidden>
+<h2 tabindex="-1" id="review-heading">Your inquiry is ready to review.</h2>
+<p>It has not been sent. Copy this into an email to <a href="mailto:{{ site.email }}">{{ site.email }}</a>, or download it and attach it.</p>
+<label for="inquiry-text">Your inquiry</label>
+<textarea id="inquiry-text" spellcheck="false">
+</textarea>
+<div class="cta-row">
+<button class="btn btn-gold" id="inquiry-copy" type="button">Copy inquiry</button>
+<button class="btn btn-outline-navy" id="inquiry-download" type="button">Download .txt</button>
+<a class="btn btn-outline-navy" id="inquiry-email" href="mailto:{{ site.email }}">Open email draft</a>
+</div>
+<p class="form-status" id="intake-status" role="status">
+</p>
+</div>
+</div>
+<aside class="intake-note">
+<h2>A useful place to begin.</h2>
+<p>Lauren reviews the work, the audience, the timing, and the materials you already have before recommending a scope.</p>
+<p>If a proposal or funding decision is driving this, include the deadline and what must be produced. Availability is confirmed after review.</p>
+<p>For founder work, the Founder Message Audit is the first paid doorway.</p>
+<p>Prefer a direct note?<br>
+<a href="mailto:{{ site.email }}">{{ site.email }}</a>
+<br>
+<a href="{{ site.linkedin }}" target="_blank" rel="noopener">Connect on LinkedIn <span class="sr-only">(opens in a new tab)</span>
+</a>
+</p>
+<p>Keep sensitive client, patient, or internal information out of your first inquiry. We can agree a suitable way to share materials later.</p>
+</aside>
+</div>
+</section>
+<script src="{{ '/assets/js/intake.js' | relative_url }}" defer>
+</script>
