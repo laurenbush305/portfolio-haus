@@ -12,3 +12,18 @@
 - The default Start flow is honest local inquiry preparation. A verified form handler remains an optional external setup, documented separately.
 
 Documentation is excluded from Jekyll output. This file contains only review-safe editorial decisions, not raw private source content.
+
+
+## Final editorial pass — October 20, 2026
+
+Public Work copy now uses one disclosure at the top: “Selected work from Lauren Bush’s prior roles, with each organization credited below.” Each case has a simple role/organization line. Employer credits remain accurate without repeated disclaimers or source-review commentary. Martin Investment Group / Black Women Invest remain named in the financial education context; the advisory board/project manager title is specifically attributed to Martin Investment Group.
+
+The healthcare reach figure describes the program’s reach. Lauren’s contribution is described as coordinating/supporting TeamSTEPPS communications and training delivery across educators and project managers, with attention to client needs and participant experience. It does not claim she personally trained every participant. That distinction is maintained by the wording of the contribution, rather than a visible caveat beside the number.
+
+The metrics are unchanged: nearly 500 healthcare professionals; 9,000-member financial education context; 40% retention and 25% revenue growth; first-month APLU results of 133%, 72%, and 10%. The association context now explicitly says public research universities, as specified in Lauren’s final editorial brief. Source limitations and omitted metrics remain documented above.
+
+The Method example remains an illustrative process under “A working example.” It has no named client, claimed outcome, or quantified result. The explicit “not a claim about a specific client engagement” sentence has been removed from the public page.
+
+The site-wide pass removed internal accessibility commentary, dormant-page publishing-status notes, defensive routing language, and working-tool scope disclaimers. Strong approved headlines, navigation, visual system, offer names, scoring, and route destinations remain intact. The free-diagnostic language now refers specifically to the free tool, avoiding confusion with the paid Founder Message Audit.
+
+Start keeps the same questions, validation, controls, and local preparation flow. Instructions are shorter, but the pre-form notice still states that nothing is sent automatically and the review panel tells visitors to email or attach the inquiry. The unconfigured handler remains unchanged. Data-handling and submission instructions are retained where they help the visitor complete the task.

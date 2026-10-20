@@ -43,6 +43,6 @@
   var url = URL.createObjectURL(new Blob([output.value],{type:'text/plain;charset=utf-8'}));
   var a = document.createElement('a'); a.href=url; a.download='portfolio-haus-inquiry.txt'; document.body.appendChild(a);a.click();a.remove();
   setTimeout(function(){URL.revokeObjectURL(url);},1000);
-  status.textContent='Downloaded. Attach the file to an email to Portfolio Haus. Your inquiry has not been sent.';
+  status.textContent='Downloaded. Attach the file to your email to Portfolio Haus.';
  });
 })();

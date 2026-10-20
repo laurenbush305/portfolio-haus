@@ -35,3 +35,9 @@ Axe-core 4.10.3 WCAG 2 A/AA and WCAG 2.1 AA checks: no violations on 12 content/
 - No physical iPhone/Android device or screen reader was available for this run.
 
 The branch is technically ready for content review and merge with the honest local inquiry flow. Direct form delivery is an optional connection, not a feature represented as already active.
+
+## Final editorial pass — October 20, 2026
+
+The editorial-only revision was rebuilt with Jekyll 3.10 and strict front matter. The existing site checker passed all 18 routes and 10 sitemap URLs. The existing browser suite passed again: 18 routes at 1440/768/390/320 pixels; 24 diagnostic result/context combinations; keyboard navigation and FAQ disclosure; intake validation, full download, and no automatic POST; both working instruments; five Haus Signal lanes and typed fallback; no-JS fallback. No horizontal overflow, page JavaScript errors, or local HTTP failures were found.
+
+Rendered Home, Work, Institutions, Founders, and Start were inspected on desktop and mobile. Updated screenshots are saved with the local editorial review deliverable. Copy changes did not require CSS, navigation, layout, scoring, offer-name, route, or intake-field changes. Exact case-metric text and the first-month timeframe were compared with the prior commit and preserved. Formspree remains unconfigured and was not connected during this pass. No merge or production deployment was performed.

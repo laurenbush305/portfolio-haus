@@ -19,9 +19,9 @@ description: Tell Portfolio Haus what you are working on, who needs to understan
 <section>
 <div class="container intake-layout">
 <div>
-<p id="intake-mode" class="form-note">{% if site.intake_endpoint != '' %}Send your inquiry securely through Formspree. Please keep confidential or sensitive information out of this first note.{% else %}This page prepares your inquiry on your device. Review it, then copy it into an email or download it. Nothing is sent automatically.{% endif %}</p>
+<p id="intake-mode" class="form-note">{% if site.intake_endpoint != '' %}Send a brief note about the work. Save sensitive details for a follow-up.{% else %}Answer below, then review and email your inquiry. Nothing is sent automatically.{% endif %}</p>
 <noscript>
-<p>You can <a href="mailto:{{ site.email }}">email {{ site.email }}</a> with your project, audience, current materials, and deadline.{% if site.intake_endpoint == '' %} The inquiry builder requires JavaScript.{% endif %}</p>
+<p>You can <a href="mailto:{{ site.email }}">email {{ site.email }}</a> with your project, audience, current materials, and deadline.</p>
 </noscript>
 <form id="intake-form" class="intake-form" {% if site.intake_endpoint != '' %}action="{{ site.intake_endpoint | escape }}" method="post" data-handler="connected"{% else %}data-handler="local"{% endif %} aria-describedby="intake-mode">
 <div class="form-grid">
@@ -78,7 +78,7 @@ description: Tell Portfolio Haus what you are working on, who needs to understan
 <div class="field">
 <label for="materials">What materials already exist? <small>(optional)</small>
 </label>
-<textarea id="materials" name="materials" maxlength="2000" placeholder="A website, deck, research, draft proposal, or notes. A description is enough.">
+<textarea id="materials" name="materials" maxlength="2000" placeholder="A website, deck, research, draft proposal, or notes.">
 </textarea>
 </div>
 <div class="field">
@@ -105,11 +105,11 @@ description: Tell Portfolio Haus what you are working on, who needs to understan
 <input id="website-trap" name="_gotcha" tabindex="-1" autocomplete="off">
 </div>
 <button class="btn btn-gold" id="intake-submit" type="submit"{% if site.intake_endpoint == '' %} disabled{% endif %}>{% if site.intake_endpoint != '' %}Send Inquiry{% else %}Prepare My Inquiry{% endif %}</button>
-<p class="form-note">{% if site.intake_endpoint != '' %}Formspree processes the information you submit and delivers it to Portfolio Haus. See <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener">Formspree’s privacy policy</a>.{% else %}Your answers stay in this page until you choose to send them. They are not saved if you close or reload the page.{% endif %}</p>
+<p class="form-note">{% if site.intake_endpoint != '' %}Formspree processes the information you submit and delivers it to Portfolio Haus. See <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener">Formspree’s privacy policy</a>.{% else %}Keep this page open until you copy or download your inquiry.{% endif %}</p>
 </form>
 <div class="inquiry-review" id="inquiry-review" hidden>
 <h2 tabindex="-1" id="review-heading">Your inquiry is ready to review.</h2>
-<p>It has not been sent. Copy this into an email to <a href="mailto:{{ site.email }}">{{ site.email }}</a>, or download it and attach it.</p>
+<p>Copy your inquiry into an email to <a href="mailto:{{ site.email }}">{{ site.email }}</a>, or download it and attach it.</p>
 <label for="inquiry-text">Your inquiry</label>
 <textarea id="inquiry-text" spellcheck="false">
 </textarea>
@@ -124,8 +124,8 @@ description: Tell Portfolio Haus what you are working on, who needs to understan
 </div>
 <aside class="intake-note">
 <h2>A useful place to begin.</h2>
-<p>Lauren reviews the work, the audience, the timing, and the materials you already have before recommending a scope.</p>
-<p>If a proposal or funding decision is driving this, include the deadline and what must be produced. Availability is confirmed after review.</p>
+<p>Lauren will read your note and recommend where to begin.</p>
+<p>Have a proposal or funding deadline? Include the date and what needs to be ready.</p>
 <p>For founder work, the Founder Message Audit is the first paid doorway.</p>
 <p>Prefer a direct note?<br>
 <a href="mailto:{{ site.email }}">{{ site.email }}</a>
@@ -133,7 +133,7 @@ description: Tell Portfolio Haus what you are working on, who needs to understan
 <a href="{{ site.linkedin }}" target="_blank" rel="noopener">Connect on LinkedIn <span class="sr-only">(opens in a new tab)</span>
 </a>
 </p>
-<p>Keep sensitive client, patient, or internal information out of your first inquiry. We can agree a suitable way to share materials later.</p>
+<p>A description of your materials is enough for now. Save sensitive details for a follow-up.</p>
 </aside>
 </div>
 </section>

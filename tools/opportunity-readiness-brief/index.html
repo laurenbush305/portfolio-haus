@@ -18,7 +18,7 @@ sitemap: false
     <div class="haus-lines"><span></span><span></span></div>
     <p class="tool-sub">For the moment when someone says: we have a proposal due and the story is everywhere.</p>
     <p class="tool-promise">Ten minutes of honest answers now saves the first hour of every meeting later. Nothing you enter leaves this page until you send it.</p>
-    <p class="hero-use">Working prospect tool &middot; <b>Used before deadline-driven work</b> &middot; Not a substitute for strategy</p>
+    <p class="hero-use">Working prospect tool &middot; <b>Used before deadline-driven work</b></p>
   </div>
 </section>
 
@@ -278,7 +278,7 @@ sitemap: false
     if (messiest === "proof") {
       return "Institutional proof and evidence support: organizing the proof behind your claims into language this decision audience can act on. Send this brief and Portfolio Haus will map the gaps.";
     }
-    return "A short scoping conversation. This opportunity is in reasonable shape, which means the goal is precision, not rescue. Send this brief and Portfolio Haus will reply with where the leverage is.";
+    return "A short conversation to choose the next step. Send this brief so Portfolio Haus can focus on what still needs attention.";
   }
 
   function esc(s) { return s; } /* textContent assignment used below; no HTML injection */
@@ -325,8 +325,8 @@ sitemap: false
     document.getElementById("b-summary").textContent = summary;
     document.getElementById("b-audience").textContent = orNote(audience, "Not yet defined.");
     document.getElementById("b-objective").textContent = objective;
-    document.getElementById("b-proof").textContent = orNote(proof, "None listed. If proof exists, it has not been gathered here yet, which usually means it has not been gathered anywhere yet.");
-    document.getElementById("b-gaps").textContent = orNote(gaps, "None named. Worth a second look: opportunities of this kind almost always test at least one unproven claim.");
+    document.getElementById("b-proof").textContent = orNote(proof, "List the evidence you can use for this opportunity.");
+    document.getElementById("b-gaps").textContent = orNote(gaps, "Check which claims still need supporting evidence.");
     document.getElementById("b-materials").textContent = orNote(materials, "Not yet listed. Pull the requirements from the opportunity itself before anything gets drafted.");
     document.getElementById("b-timeline").textContent = tRisk.text;
     document.getElementById("b-msgrisk").textContent = mRisk.text + " Current state: " + msgStateLabel.toLowerCase();

@@ -26,8 +26,8 @@
   var CONTACT_URL = document.body.dataset.contactUrl;
 
   var GREETING = "Hi, I\u2019m the Haus Signal. Tell me what you\u2019re trying to clarify, explain, fund, launch, or strengthen, and I\u2019ll route you to the right Portfolio Haus next step.";
-  var UNSURE = "I don\u2019t want to overstate that. The best next step is to send a project inquiry so Portfolio Haus can review the details.";
-  var PRICING = "Pricing depends on scope, timeline, and the level of strategic support the work needs. The best next step is to send a project inquiry so Portfolio Haus can review the project and recommend the right path.";
+  var UNSURE = "Tell Portfolio Haus what you are working on, who needs to understand it, and what needs to become clearer.";
+  var PRICING = "Pricing depends on scope, timeline, and the level of strategic support the work needs. Share your starting point and deadline in an inquiry.";
 
   var LANES = {
     institutions: { label: "Institutional communications", questions: [
@@ -64,7 +64,7 @@
   panel.innerHTML =
     '<div class="hs-head">' +
       '<div><p class="hs-title">The Haus Signal</p>' +
-      '<p class="hs-sub">Guided routing. Your messages stay on this page.</p></div>' +
+      '<p class="hs-sub">Find a starting point. Your messages stay here.</p></div>' +
       '<button class="hs-close" type="button" aria-label="Close the Haus Signal">&times;</button>' +
     '</div>' +
     '<div class="hs-body" role="log" aria-label="Routing conversation" aria-live="polite" aria-relevant="additions"></div>' +
@@ -201,7 +201,7 @@
       say(PRICING); recommendContactOnly(); return;
     }
     if (has(["guarantee", "guaranteed", "promise you", "will we get", "success rate"])) {
-      say("Portfolio Haus does not guarantee outcomes like funding decisions, coverage, or approvals. What it builds is the clearest, best-evidenced version of your story.\n" + UNSURE);
+      say("Funding decisions and approvals depend on the reviewing organization. Portfolio Haus helps you make a clear, well-supported case.\n" + UNSURE);
       recommendContactOnly(); return;
     }
     if (has(["grant", "proposal", "rfp", "funder", "funding", "deadline"])) { startLane("funding"); return; }
@@ -215,7 +215,7 @@
   }
 
   function recommendContactOnly() {
-    recommend({ service: "Send a Project Inquiry", text: "Share what you are working on and where the message needs to hold. Portfolio Haus reviews every inquiry and recommends the right path, or says so honestly if it is not the right fit." });
+    recommend({ service: "Send a Project Inquiry", text: "Share the work, the audience, and the decision ahead. Portfolio Haus will recommend where to begin." });
   }
 
   /* ---------- Events ---------- */
