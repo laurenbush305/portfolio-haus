@@ -5,6 +5,7 @@ description: A working diagnostic used inside Portfolio Haus discovery, onboardi
 extra_css:
   - /assets/css/tools.css
 noindex: true
+sitemap: false
 ---
 
 <div id="top"></div>
@@ -34,9 +35,9 @@ noindex: true
         </div>
 
         <!-- 1. The Claim -->
-        <p class="form-step-title" style="margin-top:26px;">1. The Claim</p>
+        <h2 class="form-step-title" style="margin-top:26px;">1. The Claim</h2>
         <div class="field">
-          <label for="d-claim">What does this organization stand for? <span class="hint">In their words, as heard. Resist the urge to fix it here. That comes later, and it is billable.</span></label>
+          <label for="d-claim">What does this organization stand for? <span class="hint">In their words, as heard. Resist the urge to fix it here. Keep the original wording for the diagnosis.</span></label>
           <textarea id="d-claim"></textarea>
         </div>
         <div class="field" data-rate="clarity">
@@ -50,7 +51,7 @@ noindex: true
         </div>
 
         <!-- 2. The Believers -->
-        <p class="form-step-title" style="margin-top:26px;">2. The Believers</p>
+        <h2 class="form-step-title" style="margin-top:26px;">2. The Believers</h2>
         <div class="field">
           <label for="d-audience">Who needs to believe it? <span class="hint">Funders, members, boards, partners, the public. Who, specifically, and in what order.</span></label>
           <textarea id="d-audience"></textarea>
@@ -66,7 +67,7 @@ noindex: true
         </div>
 
         <!-- 3. The Evidence -->
-        <p class="form-step-title" style="margin-top:26px;">3. The Evidence</p>
+        <h2 class="form-step-title" style="margin-top:26px;">3. The Evidence</h2>
         <div class="field">
           <label for="d-evidence">What evidence supports the claim? <span class="hint">Outcomes, data, testimonials, track record. What exists, and where does it live.</span></label>
           <textarea id="d-evidence"></textarea>
@@ -82,7 +83,7 @@ noindex: true
         </div>
 
         <!-- 4. The Travel -->
-        <p class="form-step-title" style="margin-top:26px;">4. The Travel</p>
+        <h2 class="form-step-title" style="margin-top:26px;">4. The Travel</h2>
         <div class="field">
           <label for="d-travel">Where does the story need to travel? <span class="hint">Website, proposals, board rooms, press, partner channels, the halls of a conference.</span></label>
           <textarea id="d-travel"></textarea>
@@ -98,16 +99,16 @@ noindex: true
         </div>
 
         <!-- 5. The Moment -->
-        <p class="form-step-title" style="margin-top:26px;">5. The Moment</p>
+        <h2 class="form-step-title" style="margin-top:26px;">5. The Moment</h2>
         <div class="field">
           <label for="d-moment">What decision, opportunity, or audience moment must the message support? <span class="hint">A proposal, a funding cycle, a launch, a leadership transition. The thing with a date on it, if there is one.</span></label>
           <textarea id="d-moment"></textarea>
         </div>
 
         <!-- 6. The Friction -->
-        <p class="form-step-title" style="margin-top:26px;">6. The Friction</p>
+        <h2 class="form-step-title" style="margin-top:26px;">6. The Friction</h2>
         <div class="field">
-          <label>Where is the message breaking? <span class="hint">Check what applies. Multiple is normal. All four is a Tuesday.</span></label>
+          <label>Where is the message breaking? <span class="hint">Check what applies. Choose every point that needs attention.</span></label>
           <div class="check-group">
             <label><input type="checkbox" id="fric-unclear"> Unclear: the claim itself is fuzzy or contested</label>
             <label><input type="checkbox" id="fric-unsupported"> Unsupported: claims travel without receipts</label>
@@ -133,7 +134,7 @@ noindex: true
           <textarea id="d-notes" style="min-height:110px;"></textarea>
         </div>
 
-        <p class="field-error" id="dbl-rating-error" style="display:none;font-family:'Crimson Pro',serif;font-style:italic;color:var(--wine);margin:0 0 14px;">All five ratings are needed to score the diagnostic. The blank ones are marked.</p>
+        <p class="field-error" id="dbl-rating-error" style="display:none;font-family:'Libre Baskerville',Georgia,serif;font-style:italic;color:var(--wine);margin:0 0 14px;">All five ratings are needed to score the diagnostic. The blank ones are marked.</p>
         <button class="btn btn-gold" id="dbl-run" type="button">Score the Diagnostic</button>
       </div>
 
@@ -141,7 +142,7 @@ noindex: true
       <div class="brief-output" id="dbl-output" aria-live="polite">
         <div class="brief-doc">
           <p class="brief-marque">Doctrine Build&trade; Lite &middot; Diagnostic Result</p>
-          <h3 id="o-org"></h3>
+          <h2 id="o-org"></h2>
           <p class="brief-date" id="o-date"></p>
 
           <div class="signal-check">
@@ -149,21 +150,21 @@ noindex: true
             <div id="o-signal"></div>
           </div>
 
-          <div class="brief-section"><h4>Doctrine Clarity</h4><p id="o-clarity"></p></div>
-          <div class="brief-section"><h4>Evidence Strength</h4><p id="o-evidence"></p></div>
-          <div class="brief-section"><h4>Audience Precision</h4><p id="o-audience"></p></div>
-          <div class="brief-section"><h4>Story Travel Readiness</h4><p id="o-travel"></p></div>
-          <div class="brief-section"><h4>Handoff Risk</h4><p id="o-handoff"></p></div>
-          <div class="brief-section"><h4>Friction Observed</h4><p id="o-friction"></p></div>
-          <div class="brief-section"><h4>The Moment This Must Support</h4><p id="o-moment"></p></div>
+          <div class="brief-section"><h3>Doctrine Clarity</h3><p id="o-clarity"></p></div>
+          <div class="brief-section"><h3>Evidence Strength</h3><p id="o-evidence"></p></div>
+          <div class="brief-section"><h3>Audience Precision</h3><p id="o-audience"></p></div>
+          <div class="brief-section"><h3>Story Travel Readiness</h3><p id="o-travel"></p></div>
+          <div class="brief-section"><h3>Handoff Risk</h3><p id="o-handoff"></p></div>
+          <div class="brief-section"><h3>Friction Observed</h3><p id="o-friction"></p></div>
+          <div class="brief-section"><h3>The Moment This Must Support</h3><p id="o-moment"></p></div>
 
           <div class="result-next" style="margin-top:26px;">
-            <h4>Recommended Engagement Path</h4>
+            <h3>Recommended Engagement Path</h3>
             <p class="offer-name" id="o-path"></p>
             <p id="o-pathdesc"></p>
           </div>
 
-          <div class="brief-section"><h4>Session Notes</h4><p id="o-notes"></p></div>
+          <div class="brief-section"><h3>Session Notes</h3><p id="o-notes"></p></div>
         </div>
 
         <div class="tool-actions">
@@ -171,13 +172,13 @@ noindex: true
           <button class="btn-tool" id="o-download" type="button">Download as .txt</button>
           <a class="btn-tool" id="o-email" href="#">Send to Portfolio Haus</a>
         </div>
-        <p class="action-confirm" id="o-confirm"></p>
+        <p class="action-confirm" id="o-confirm" role="status"></p>
         <div class="tool-restart">
           <button type="button" id="dbl-edit">&larr; Back to the diagnostic</button>
         </div>
       </div>
 
-      <p class="tool-footnote">Diagnostic Lite gives the shape of the problem. The full Doctrine Build&trade; gives the doctrine, the evidence architecture, and the materials that carry it. That distinction is the business model.</p>
+      <p class="tool-footnote">Diagnostic Lite gives the shape of the problem. The full Doctrine Build&trade; gives the doctrine, the evidence architecture, and the materials that carry it. Keep the result and bring it to a scoping conversation.</p>
     </div>
   </div>
 </section>
@@ -224,23 +225,23 @@ noindex: true
 
   var PATHS = {
     system: {
-      name: "Institutional Narrative System",
+      name: "Institutional / Doctrine Build\u2122 inquiry",
       desc: "Multiple foundations are soft at once: the claim, the evidence, and the audience map need to be built together, not patched separately. This is full narrative infrastructure work, sequenced Diagnose, Design, Deliver."
     },
     sprint: {
-      name: "Doctrine Build\u2122 Sprint",
+      name: "Institutional / Doctrine Build\u2122 inquiry",
       desc: "The core issue is the doctrine itself: what this organization stands for and the evidence that makes it believable. A focused sprint names the claim, structures the proof, and produces language built to travel."
     },
     audit: {
-      name: "Message Audit",
+      name: "Institutional / Doctrine Build\u2122 inquiry",
       desc: "The foundations are mostly in place. A focused audit will name what is unclear or underbuilt, sharpen the audience sequencing, and hand back the strongest version of the existing message."
     },
     proposal: {
-      name: "Proposal / Funding Narrative Support",
+      name: "Opportunity inquiry",
       desc: "There is a live moment on the calendar and the story is not yet ready to compete for it. The engagement should be scoped to that moment: claim, proof, and ask, built against the real deadline."
     },
     handoff: {
-      name: "Implementation-Ready Handoff",
+      name: "Institutional / Doctrine Build\u2122 inquiry",
       desc: "The message works; its survival does not. The engagement is documentation the next person can run: message guides, briefs, and working materials that hold without a live explanation."
     }
   };
@@ -336,8 +337,8 @@ noindex: true
     document.getElementById("o-audience").textContent = READS.audience[scores.audience] + (v("d-audience") ? " Named believers: " + v("d-audience") : "");
     document.getElementById("o-travel").textContent = READS.travel[scores.travel] + (v("d-travel") ? " Destinations: " + v("d-travel") : "");
     document.getElementById("o-handoff").textContent = READS.handoff[scores.handoff];
-    document.getElementById("o-friction").textContent = friction.length ? friction.join(". ") + "." : "No friction boxes checked. Either genuinely healthy or not yet examined closely.";
-    document.getElementById("o-moment").textContent = moment || "No specific moment named. The engagement can be built ahead of pressure, which is the cheapest time to build it.";
+    document.getElementById("o-friction").textContent = friction.length ? friction.join(". ") + "." : "No friction boxes selected. Review this alongside the ratings.";
+    document.getElementById("o-moment").textContent = moment || "No specific moment named. The engagement can be built ahead of pressure, with room to make deliberate decisions.";
     document.getElementById("o-path").textContent = path.name;
     document.getElementById("o-pathdesc").textContent = path.desc;
     document.getElementById("o-notes").textContent = v("d-notes") || "None recorded.";
@@ -374,13 +375,17 @@ noindex: true
 
     document.getElementById("dbl-form").hidden = true;
     document.getElementById("dbl-output").classList.add("active");
-    document.getElementById("dbl-output").scrollIntoView({ behavior: "smooth", block: "start" });
+    document.getElementById("dbl-output").setAttribute("tabindex", "-1");
+    document.getElementById("dbl-output").focus({preventScroll:true});
+    document.getElementById("dbl-output").scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
   });
 
   document.getElementById("dbl-edit").addEventListener("click", function () {
     document.getElementById("dbl-output").classList.remove("active");
     document.getElementById("dbl-form").hidden = false;
-    document.getElementById("dbl-form").scrollIntoView({ behavior: "smooth", block: "start" });
+    document.getElementById("dbl-form").setAttribute("tabindex", "-1");
+    document.getElementById("dbl-form").focus({preventScroll:true});
+    document.getElementById("dbl-form").scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
   });
 
   function confirmMsg(msg) {
@@ -397,7 +402,7 @@ noindex: true
       ta.style.opacity = "0";
       document.body.appendChild(ta);
       ta.select();
-      try { document.execCommand("copy"); confirmMsg("Copied."); }
+      try { if (!document.execCommand("copy")) throw new Error("Copy unavailable"); confirmMsg("Copied."); }
       catch (e) { confirmMsg("Copy did not work in this browser. Use Download instead."); }
       document.body.removeChild(ta);
     }
