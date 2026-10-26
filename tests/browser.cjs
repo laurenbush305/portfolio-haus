@@ -32,6 +32,18 @@ const routes=['/','/institutions/','/founders/','/work/','/about/','/start/','/m
   const launcher=await p.locator('.hs-launcher').boundingBox();
   assert.ok(cta.x+cta.width<=launcher.x||launcher.x+launcher.width<=cta.x||cta.y+cta.height<=launcher.y||launcher.y+launcher.height<=cta.y,`CTA obscured: ${width}x${height}`);
  }
+ // Hosted fonts can fail: fallback text must not put the primary CTA behind Signal.
+ const fallback=await browser.newContext({reducedMotion:'reduce'});
+ await fallback.route(/^https:\/\/fonts\.(?:googleapis|gstatic)\.com\//,route=>route.abort());
+ const fp=await fallback.newPage();
+ for(const [width,height] of [[390,844],[375,667],[320,568]]){
+  await fp.setViewportSize({width,height});await fp.goto(base+'/');await fp.evaluate(()=>document.fonts.ready);
+  const cta=await fp.locator('.hero .btn').boundingBox();
+  const launcher=await fp.locator('.hs-launcher').boundingBox();
+  assert.ok(cta.y>=0&&cta.y+cta.height<=height,`Fallback-font CTA outside viewport: ${width}x${height}`);
+  assert.ok(cta.x+cta.width<=launcher.x||launcher.x+launcher.width<=cta.x||cta.y+cta.height<=launcher.y||launcher.y+launcher.height<=cta.y,`Fallback-font CTA obscured: ${width}x${height}`);
+ }
+ await fallback.close();
  // Mobile navigation exposes state, works with keyboard, and closes with Escape.
  await p.setViewportSize({width:390,height:844});await go('/');
  const menu=p.locator('.nav-toggle');assert.equal(await menu.getAttribute('aria-expanded'),'false');
@@ -109,5 +121,5 @@ const routes=['/','/institutions/','/founders/','/work/','/about/','/start/','/m
  assert.deepEqual(errors,[]);
  await context.close();
  const nojs=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});const np=await nojs.newPage();await np.goto(base+'/');assert.equal(await np.locator('.nav-links a:visible').count(),6);await np.goto(base+'/start/');assert.ok(await np.locator('#intake-submit').isDisabled());assert.ok(await np.locator('a[href="mailto:biz.portfoliohaus@gmail.com"]').count()>0);await nojs.close();
- await browser.close();console.log('PASS: 18 routes × 4 viewports; 24 diagnostic result/context combinations; navigation/keyboard; FAQs; intake validation/download/no POST; both working tools; five Signal lanes + typed fallback; no-JS fallback; no horizontal scroll; no page errors or local HTTP failures.');
+ await browser.close();console.log('PASS: 18 routes × 4 viewports; 24 diagnostic result/context combinations; navigation/keyboard; hosted-font failure fallback; FAQs; intake validation/download/no POST; both working tools; five Signal lanes + typed fallback; no-JS fallback; no horizontal scroll; no page errors or local HTTP failures.');
 })().catch(e=>{console.error(e);process.exit(1)});
