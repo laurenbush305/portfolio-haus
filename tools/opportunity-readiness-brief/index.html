@@ -39,8 +39,8 @@ sitemap: false
 
           <div class="field" data-required>
             <label for="f-name">Opportunity name</label>
-            <input type="text" id="f-name" placeholder="e.g., State Financial Literacy RFP, Q3 funder meeting, board vote on the expansion">
-            <span class="field-error">Give the opportunity a name. Even a working one.</span>
+            <input type="text" id="f-name" required aria-describedby="f-name-error" placeholder="e.g., State Financial Literacy RFP, Q3 funder meeting, board vote on the expansion">
+            <span class="field-error" id="f-name-error">Give the opportunity a name. Even a working one.</span>
           </div>
           <div class="field">
             <label for="f-type">Opportunity type</label>
@@ -60,8 +60,8 @@ sitemap: false
           </div>
           <div class="field" data-required>
             <label for="f-objective">What are you trying to win, secure, explain, or move forward?</label>
-            <textarea id="f-objective" placeholder="The award, the renewal, the yes, the vote, the partnership. Name it plainly."></textarea>
-            <span class="field-error">This is the whole point of the brief. One or two sentences will do.</span>
+            <textarea id="f-objective" required aria-describedby="f-objective-error" placeholder="The award, the renewal, the yes, the vote, the partnership. Name it plainly."></textarea>
+            <span class="field-error" id="f-objective-error">This is the whole point of the brief. One or two sentences will do.</span>
           </div>
         </div>
 
@@ -72,8 +72,8 @@ sitemap: false
 
           <div class="field" data-required>
             <label for="f-audience">Who needs to understand or approve this?</label>
-            <textarea id="f-audience" placeholder="Names and roles if you have them. A review committee, a program officer, a board, a partner exec."></textarea>
-            <span class="field-error">Name the decision audience, even roughly.</span>
+            <textarea id="f-audience" required aria-describedby="f-audience-error" placeholder="Names and roles if you have them. A review committee, a program officer, a board, a partner exec."></textarea>
+            <span class="field-error" id="f-audience-error">Name the decision audience, even roughly.</span>
           </div>
           <div class="field">
             <label for="f-stakeholders">Who else is involved on your side? <span class="hint">Staff, leadership, partners, consultants. Anyone with a hand on the materials or an opinion about them.</span></label>
@@ -120,8 +120,8 @@ sitemap: false
           </div>
           <div class="field" data-required>
             <label for="f-success">What would success look like?</label>
-            <textarea id="f-success" placeholder="Beyond winning. What changes for the organization if this lands?"></textarea>
-            <span class="field-error">Describe the win, even briefly. It shapes the whole narrative.</span>
+            <textarea id="f-success" required aria-describedby="f-success-error" placeholder="Beyond winning. What changes for the organization if this lands?"></textarea>
+            <span class="field-error" id="f-success-error">Describe the win, even briefly. It shapes the whole narrative.</span>
           </div>
           <div class="field">
             <label for="f-messiest">What feels messiest right now?</label>
@@ -210,6 +210,9 @@ sitemap: false
     });
     elBack.hidden = n === 1;
     elNext.textContent = n === TOTAL ? "Build the Brief" : "Next Step";
+    var heading = document.querySelector('.form-step[data-step="' + n + '"] .form-step-title');
+    heading.setAttribute("tabindex", "-1");
+    heading.focus({preventScroll:true});
     elForm.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
   }
 
@@ -220,8 +223,10 @@ sitemap: false
       var input = f.querySelector("input, textarea, select");
       var bad = !input.value.trim();
       f.classList.toggle("has-error", bad);
+      input.setAttribute("aria-invalid", String(bad));
       if (bad) ok = false;
     });
+    if (!ok) stepEl.querySelector('[aria-invalid="true"]').focus();
     return ok;
   }
 
@@ -364,6 +369,8 @@ sitemap: false
 
     elForm.hidden = true;
     elOut.classList.add("active");
+    elOut.setAttribute("tabindex", "-1");
+    elOut.focus({preventScroll:true});
     elOut.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
   }
 
@@ -382,7 +389,10 @@ sitemap: false
   document.querySelectorAll(".field input, .field textarea, .field select").forEach(function (input) {
     input.addEventListener("input", function () {
       var f = input.closest(".field");
-      if (f.classList.contains("has-error") && input.value.trim()) f.classList.remove("has-error");
+      if (f.classList.contains("has-error") && input.value.trim()) {
+        f.classList.remove("has-error");
+        input.removeAttribute("aria-invalid");
+      }
     });
   });
 

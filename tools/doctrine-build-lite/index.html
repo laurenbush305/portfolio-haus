@@ -30,8 +30,8 @@ sitemap: false
 
         <div class="field" data-required>
           <label for="d-org">Organization or body of work</label>
-          <input type="text" id="d-org" placeholder="Who is this diagnostic reading?">
-          <span class="field-error">Name the organization or the work being assessed.</span>
+          <input type="text" id="d-org" required aria-describedby="d-org-error" placeholder="Who is this diagnostic reading?">
+          <span class="field-error" id="d-org-error">Name the organization or the work being assessed.</span>
         </div>
 
         <!-- 1. The Claim -->
@@ -134,7 +134,7 @@ sitemap: false
           <textarea id="d-notes" style="min-height:110px;"></textarea>
         </div>
 
-        <p class="field-error" id="dbl-rating-error" style="display:none;font-family:'Libre Baskerville',Georgia,serif;font-style:italic;color:var(--wine);margin:0 0 14px;">All five ratings are needed to score the diagnostic. The blank ones are marked.</p>
+        <p class="field-error" id="dbl-rating-error" role="alert" style="display:none;font-family:'Libre Baskerville',Georgia,serif;font-style:italic;color:var(--wine);margin:0 0 14px;">All five ratings are needed to score the diagnostic. The blank ones are marked.</p>
         <button class="btn btn-gold" id="dbl-run" type="button">Score the Diagnostic</button>
       </div>
 
@@ -264,28 +264,51 @@ sitemap: false
   }
 
   document.querySelectorAll(".rate-group").forEach(function (group) {
+    group.setAttribute("aria-required", "true");
+    group.setAttribute("aria-describedby", "dbl-rating-error");
+    group.querySelectorAll("input").forEach(function (input) {
+      input.setAttribute("aria-describedby", "dbl-rating-error");
+    });
     group.addEventListener("change", function () {
       group.querySelectorAll("label").forEach(function (l) {
         l.classList.toggle("checked", l.querySelector("input").checked);
       });
       group.closest(".field").classList.remove("has-error");
+      group.removeAttribute("aria-invalid");
+      group.querySelectorAll("input").forEach(function (input) { input.removeAttribute("aria-invalid"); });
+      if (!document.querySelector('.rate-group[aria-invalid="true"]')) document.getElementById("dbl-rating-error").style.display = "none";
     });
+  });
+
+  document.getElementById("d-org").addEventListener("input", function () {
+    if (this.value.trim()) {
+      this.closest(".field").classList.remove("has-error");
+      this.removeAttribute("aria-invalid");
+    }
   });
 
   document.getElementById("dbl-run").addEventListener("click", function () {
     var ok = true;
     var orgField = document.getElementById("d-org").closest(".field");
     if (!v("d-org")) { orgField.classList.add("has-error"); ok = false; } else { orgField.classList.remove("has-error"); }
+    document.getElementById("d-org").setAttribute("aria-invalid", String(!v("d-org")));
 
     var scores = {};
+    var missingRatings = false;
     ["clarity", "audience", "evidence", "travel", "handoff"].forEach(function (k) {
       scores[k] = rate(k);
       var f = document.querySelector('.field[data-rate="' + k + '"]');
-      if (scores[k] === null) { f.classList.add("has-error"); ok = false; }
+      var group = f.querySelector(".rate-group");
+      group.setAttribute("aria-invalid", String(scores[k] === null));
+      group.querySelectorAll("input").forEach(function (input) { input.setAttribute("aria-invalid", String(scores[k] === null)); });
+      if (scores[k] === null) { f.classList.add("has-error"); ok = false; missingRatings = true; }
       else { f.classList.remove("has-error"); }
     });
-    document.getElementById("dbl-rating-error").style.display = ok ? "none" : "block";
-    if (!ok) return;
+    document.getElementById("dbl-rating-error").style.display = missingRatings ? "block" : "none";
+    if (!ok) {
+      document.querySelector('#dbl-form input[aria-invalid="true"]').focus();
+      return;
+    }
 
     var friction = [];
     if (document.getElementById("fric-unclear").checked) friction.push("Unclear: the claim itself is fuzzy or contested");
