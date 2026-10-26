@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Validate rendered routes, metadata, assets, fragment links and sitemap exclusions."""
-import json, sys
+import json, re, sys
 from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit, unquote
@@ -33,6 +33,7 @@ for f,p in pages.items():
  rel=f.relative_to(root)
  if p.headings!=1:errors.append(f'{rel}: expected one h1, found {p.headings}')
  if not p.title.strip() or not p.meta.get('description'):errors.append(f'{rel}: missing title/description')
+ if re.search(r'&(?:[A-Za-z][A-Za-z0-9]+|#\d+|#x[0-9a-fA-F]+);',p.title):errors.append(f'{rel}: literal HTML entity in browser title')
  if len(p.canonical)!=1 or not p.canonical[0].startswith('https://portfolio.haus/'):errors.append(f'{rel}: invalid canonical')
  if p.meta.get('og:url')!=(p.canonical[0] if p.canonical else ''):errors.append(f'{rel}: og:url mismatch')
  if not p.meta.get('og:image','').startswith('https://portfolio.haus/'):errors.append(f'{rel}: invalid OG image')
