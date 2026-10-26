@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Validate rendered routes, metadata, assets, fragment links and sitemap exclusions."""
-import json, sys
+import json, re, sys
 from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit, unquote
@@ -28,13 +28,20 @@ class Page(HTMLParser):
   if tag=='script' and self.in_json:self.schemas.append(json.loads(self.json_text));self.in_json=False
 pages={f:Page(f.read_text()) for f in root.rglob('*.html')}
 errors=[]
+unique={key:{} for key in ('title','description','canonical')}
 for f,p in pages.items():
  rel=f.relative_to(root)
  if p.headings!=1:errors.append(f'{rel}: expected one h1, found {p.headings}')
  if not p.title.strip() or not p.meta.get('description'):errors.append(f'{rel}: missing title/description')
+ if re.search(r'&(?:[A-Za-z][A-Za-z0-9]+|#\d+|#x[0-9a-fA-F]+);',p.title):errors.append(f'{rel}: literal HTML entity in browser title')
  if len(p.canonical)!=1 or not p.canonical[0].startswith('https://portfolio.haus/'):errors.append(f'{rel}: invalid canonical')
  if p.meta.get('og:url')!=(p.canonical[0] if p.canonical else ''):errors.append(f'{rel}: og:url mismatch')
  if not p.meta.get('og:image','').startswith('https://portfolio.haus/'):errors.append(f'{rel}: invalid OG image')
+ if p.meta.get('og:title')!=p.title or p.meta.get('og:description')!=p.meta.get('description'):errors.append(f'{rel}: inconsistent OG title/description')
+ if 'noindex' not in p.meta.get('robots',''):
+  for key,value in [('title',p.title),('description',p.meta.get('description','')),('canonical',p.canonical[0] if p.canonical else '')]:
+   if value in unique[key]:errors.append(f'{rel}: duplicate indexable {key} with {unique[key][value]}')
+   unique[key][value]=rel
  if not p.schemas:errors.append(f'{rel}: missing schema')
  if '{{' in f.read_text() or '{%' in f.read_text():errors.append(f'{rel}: unresolved Liquid')
  for ref in p.refs:

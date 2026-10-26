@@ -24,6 +24,26 @@ const routes=['/','/institutions/','/founders/','/work/','/about/','/start/','/m
    if(width===390&&['/','/institutions/','/founders/','/work/','/start/'].includes(route))await shot(route==='/'?'home-mobile':route.split('/')[1]+'-mobile');
   }
  }
+ // The primary action stays above the fold, clear of the existing floating router.
+ for(const [width,height] of [[1440,900],[1366,768],[1024,768],[768,1024],[390,844],[375,667],[320,568]]){
+  await p.setViewportSize({width,height});await go('/');
+  const cta=await p.locator('.hero .btn').boundingBox();
+  assert.ok(cta.y>=0&&cta.y+cta.height<=height,`CTA outside viewport: ${width}x${height}`);
+  const launcher=await p.locator('.hs-launcher').boundingBox();
+  assert.ok(cta.x+cta.width<=launcher.x||launcher.x+launcher.width<=cta.x||cta.y+cta.height<=launcher.y||launcher.y+launcher.height<=cta.y,`CTA obscured: ${width}x${height}`);
+ }
+ // Hosted fonts can fail: fallback text must not put the primary CTA behind Signal.
+ const fallback=await browser.newContext({reducedMotion:'reduce'});
+ await fallback.route(/^https:\/\/fonts\.(?:googleapis|gstatic)\.com\//,route=>route.abort());
+ const fp=await fallback.newPage();
+ for(const [width,height] of [[390,844],[375,667],[320,568]]){
+  await fp.setViewportSize({width,height});await fp.goto(base+'/');await fp.evaluate(()=>document.fonts.ready);
+  const cta=await fp.locator('.hero .btn').boundingBox();
+  const launcher=await fp.locator('.hs-launcher').boundingBox();
+  assert.ok(cta.y>=0&&cta.y+cta.height<=height,`Fallback-font CTA outside viewport: ${width}x${height}`);
+  assert.ok(cta.x+cta.width<=launcher.x||launcher.x+launcher.width<=cta.x||cta.y+cta.height<=launcher.y||launcher.y+launcher.height<=cta.y,`Fallback-font CTA obscured: ${width}x${height}`);
+ }
+ await fallback.close();
  // Mobile navigation exposes state, works with keyboard, and closes with Escape.
  await p.setViewportSize({width:390,height:844});await go('/');
  const menu=p.locator('.nav-toggle');assert.equal(await menu.getAttribute('aria-expanded'),'false');
@@ -38,10 +58,17 @@ const routes=['/','/institutions/','/founders/','/work/','/about/','/start/','/m
  let submissions=0;p.on('request',r=>{if(r.method()==='POST')submissions++;});
  await p.locator('#intake-submit').click();assert.ok(await p.locator('#inquiry-review').isHidden());
  for(const [id,value] of Object.entries({name:'QA Test',organization:'Example organization',email:'test@example.org',project:'A research-led initiative',audience:'Board and partners',unclear:'The headline and evidence',deadline:'November 15',materials:'Research and an existing deck',budget:'To be determined'}))await p.locator('#'+id).fill(value);
- await p.locator('#support').selectOption({label:'Both'});await p.locator('#intake-submit').click();
+ await p.locator('#support').selectOption({label:'Both'});
+ await p.locator('#email').fill('invalid-address');await p.locator('#intake-submit').click();
+ assert.ok(await p.locator('#inquiry-review').isHidden());assert.equal(await p.locator('#email').evaluate(e=>e.validity.typeMismatch),true);
+ assert.ok(await p.locator('#email').evaluate(e=>e===document.activeElement));
+ await p.locator('#email').fill('test@example.org');await p.locator('#intake-submit').click();
  assert.ok(await p.locator('#inquiry-review').isVisible());const inquiry=await p.locator('#inquiry-text').inputValue();assert.ok(inquiry.includes('Name the Headline™ Sprint'));assert.ok(inquiry.includes('Missing Headline'));assert.ok(inquiry.includes('test@example.org'));assert.equal(submissions,0);
  const inquiryDownload=p.waitForEvent('download');await p.locator('#inquiry-download').click();const d=await inquiryDownload;assert.equal(d.suggestedFilename(),'portfolio-haus-inquiry.txt');assert.equal(fs.readFileSync(await d.path(),'utf8'),inquiry);
  assert.ok((await p.locator('#inquiry-email').getAttribute('href')).startsWith('mailto:biz.portfoliohaus@gmail.com?'));
+ await p.evaluate(()=>Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:()=>Promise.reject(new Error('Test: clipboard denied'))}}));
+ await p.locator('#inquiry-copy').click();await p.getByRole('status').filter({hasText:'Select and copy'}).waitFor();
+ assert.ok(await p.locator('#inquiry-text').evaluate(e=>e===document.activeElement&&e.selectionEnd===e.value.length));
  await noOverflow('intake result');await shot('start-review-mobile');
  // All six scoring outcomes, four buyer contexts; detailed diagnosis remains independent from commercial exits.
  const profiles={headline:[3,3,0,0,0,0,0,0,0,0],receipts:[0,0,3,3,0,0,0,0,0,0],audience:[0,0,0,0,3,3,0,0,0,0],deadline:[0,0,0,0,0,0,3,3,0,0],handoff:[0,0,0,0,0,0,0,0,3,3],ready:Array(10).fill(0)};
@@ -62,10 +89,27 @@ const routes=['/','/institutions/','/founders/','/work/','/about/','/start/','/m
  await p.locator('#ctri-restart').click();assert.equal(await p.locator('#ctri-count').textContent(),'Question 1 of 10');
  await p.locator('.quiz-option').nth(1).click();await p.waitForFunction(()=>document.getElementById('ctri-count').textContent==='Question 2 of 10');await p.locator('#ctri-back').click();assert.equal(await p.locator('.quiz-option.selected').innerText(),await p.locator('.quiz-option').nth(1).innerText());
  // Internal working instruments retain scoring, validation, exports, and edit flows.
- await go('/tools/doctrine-build-lite/');await p.locator('#dbl-run').click();assert.ok(await p.locator('#dbl-rating-error').isVisible());await p.locator('#d-org').fill('QA institution');
+ await go('/tools/doctrine-build-lite/');await p.locator('#dbl-run').click();assert.ok(await p.locator('#dbl-rating-error').isVisible());
+ assert.ok(await p.locator('#d-org').evaluate(e=>e===document.activeElement));assert.equal(await p.locator('#d-org').getAttribute('aria-invalid'),'true');
+ assert.equal(await p.locator('.rate-group[aria-invalid="true"]').count(),5);
+ await p.locator('#d-org').fill('QA institution');assert.equal(await p.locator('#d-org').getAttribute('aria-invalid'),null);
+ await p.locator('#dbl-run').click();assert.ok(await p.locator('input[name="rate-clarity"]').first().evaluate(e=>e===document.activeElement));
  for(const rate of ['clarity','audience','evidence','travel','handoff'])await p.locator(`input[name="rate-${rate}"][value="2"]`).check({force:true});
+ assert.ok(await p.locator('#dbl-rating-error').isHidden());
+ await p.locator('#d-org').fill('');await p.locator('#dbl-run').click();assert.ok(await p.locator('#dbl-rating-error').isHidden());assert.ok(await p.locator('#d-org').evaluate(e=>e===document.activeElement));await p.locator('#d-org').fill('QA institution');
  await p.locator('#dbl-run').click();assert.ok(await p.locator('#dbl-output').isVisible());assert.equal(await p.locator('#o-path').innerText(),'Institutional / Doctrine Build™ inquiry');await noOverflow('Doctrine result');await p.locator('#dbl-edit').click();assert.equal(await p.locator('#d-org').inputValue(),'QA institution');
- await go('/tools/opportunity-readiness-brief/');await p.locator('#orb-next').click();assert.equal(await p.locator('#orb-count').textContent(),'Step 1 of 4');await p.locator('#f-name').fill('QA opportunity');await p.locator('#f-objective').fill('Explain the evidence');await p.locator('#orb-next').click();await p.locator('#f-audience').fill('Review committee');await p.locator('#orb-next').click();await p.locator('#orb-next').click();await p.locator('#f-success').fill('A clear decision');await p.locator('#orb-next').click();assert.ok(await p.locator('#orb-output').isVisible());await noOverflow('Opportunity result');await p.locator('#orb-edit').click();assert.equal(await p.locator('#f-name').inputValue(),'QA opportunity');
+ await go('/tools/opportunity-readiness-brief/');await p.locator('#orb-next').click();assert.equal(await p.locator('#orb-count').textContent(),'Step 1 of 4');
+ assert.ok(await p.locator('#f-name').evaluate(e=>e===document.activeElement));assert.equal(await p.locator('#f-name').getAttribute('aria-invalid'),'true');
+ assert.equal(await p.locator('#f-name').getAttribute('aria-describedby'),'f-name-error');
+ await p.locator('#f-name').fill('QA opportunity');assert.equal(await p.locator('#f-name').getAttribute('aria-invalid'),null);
+ await p.locator('#f-objective').fill('Explain the evidence');await p.locator('#orb-next').click();
+ assert.ok(await p.locator('.form-step.active h2').evaluate(e=>e===document.activeElement));
+ await p.locator('#orb-next').click();assert.ok(await p.locator('#f-audience').evaluate(e=>e===document.activeElement));
+ await p.locator('#f-audience').fill('Review committee');await p.locator('#orb-next').click();await p.locator('#orb-next').click();
+ await p.locator('#orb-next').click();assert.ok(await p.locator('#f-success').evaluate(e=>e===document.activeElement));
+ await p.locator('#f-success').fill('A clear decision');await p.locator('#orb-next').click();assert.ok(await p.locator('#orb-output').isVisible());
+ assert.ok(await p.locator('#orb-output').evaluate(e=>e===document.activeElement));
+ await noOverflow('Opportunity result');await p.locator('#orb-edit').click();assert.equal(await p.locator('#f-name').inputValue(),'QA opportunity');
  // Haus Signal guided and typed routes use only canonical exits.
  for(const lane of ['Institutional communications','Founder messaging','A proposal, funding, or opportunity deadline','Proof that needs to travel','Not sure where to begin']){
   await go('/');await p.locator('.hs-launcher').click();await p.getByRole('button',{name:lane,exact:true}).click();
@@ -77,5 +121,5 @@ const routes=['/','/institutions/','/founders/','/work/','/about/','/start/','/m
  assert.deepEqual(errors,[]);
  await context.close();
  const nojs=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});const np=await nojs.newPage();await np.goto(base+'/');assert.equal(await np.locator('.nav-links a:visible').count(),6);await np.goto(base+'/start/');assert.ok(await np.locator('#intake-submit').isDisabled());assert.ok(await np.locator('a[href="mailto:biz.portfoliohaus@gmail.com"]').count()>0);await nojs.close();
- await browser.close();console.log('PASS: 18 routes × 4 viewports; 24 diagnostic result/context combinations; navigation/keyboard; FAQs; intake validation/download/no POST; both working tools; five Signal lanes + typed fallback; no-JS fallback; no horizontal scroll; no page errors or local HTTP failures.');
+ await browser.close();console.log('PASS: 18 routes × 4 viewports; 24 diagnostic result/context combinations; navigation/keyboard; hosted-font failure fallback; FAQs; intake validation/download/no POST; both working tools; five Signal lanes + typed fallback; no-JS fallback; no horizontal scroll; no page errors or local HTTP failures.');
 })().catch(e=>{console.error(e);process.exit(1)});
